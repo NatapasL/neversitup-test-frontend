@@ -1,0 +1,9 @@
+
+.main-layout {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  max-width: 481px;
+}
