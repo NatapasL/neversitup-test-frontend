@@ -4,6 +4,7 @@ import { ReactElement, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { InputType } from '../constants';
+import { SECONDARY } from '../styles/colors';
 import { InputContainer } from './InputContainer';
 
 const REQUIRED_ERROR_MESSAGE = 'Please complete this field';
@@ -60,4 +61,10 @@ export const Input = ({
   );
 };
 
-const StyledInput = styled.input``;
+const StyledInput = styled.input`
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid ${SECONDARY};
+  padding: 4px 8px;
+`;

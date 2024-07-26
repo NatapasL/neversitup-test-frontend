@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactElement, ReactNode } from 'react';
+import { Small1 } from '../styles/text';
 import { ValidationErrorMessage } from './ValidationErrorMessage';
 
 export interface InputContainer {
@@ -16,7 +17,7 @@ export const InputContainer = ({
 }: InputContainer): ReactElement => {
   return (
     <div>
-      <div>{label}</div>
+      <Small1>{label}</Small1>
       {children}
       {errorMessage ? <ValidationErrorMessage text={errorMessage} /> : <></>}
     </div>
