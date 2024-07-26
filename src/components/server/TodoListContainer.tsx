@@ -4,6 +4,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/navigation';
 import { ReactElement, useCallback, useState } from 'react';
+import styled from 'styled-components';
 import { Todo, TodoFormValues } from '../../types';
 import { TodoFormModal } from '../client';
 import { Button } from '../client/Button';
@@ -58,16 +59,20 @@ export const TodoListContainer = ({
   );
 
   return (
-    <div>
-      <TodoList
-        todoList={todoList}
-        onClickTodoCard={handleClickTodoCard}
-      ></TodoList>
+    <>
+      <StyledTodoListContainer>
+        <TodoList
+          todoList={todoList}
+          onClickTodoCard={handleClickTodoCard}
+        ></TodoList>
 
-      <Button onClick={handleClickCreateTodo}>
-        <FontAwesomeIcon size="sm" icon={faPlus} />
-        Create
-      </Button>
+        <div className="create-todo-button-container">
+          <Button onClick={handleClickCreateTodo} width="100%">
+            <FontAwesomeIcon size="lg" icon={faPlus} />
+            Create
+          </Button>
+        </div>
+      </StyledTodoListContainer>
 
       <TodoFormModal
         open={modalOpen}
@@ -75,6 +80,21 @@ export const TodoListContainer = ({
         todo={editingTodo}
         onSubmit={handleSubmitTodoForm}
       ></TodoFormModal>
-    </div>
+    </>
   );
 };
+
+const StyledTodoListContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - 16px);
+  display: grid;
+  grid-template-rows: 1fr 64px;
+  /* row-gap: 32px; */
+  overflow-x: hidden;
+
+  .create-todo-button-container {
+    padding-top: 16px;
+    box-shadow: 2px 47px 139px 87px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 47px 32px 87px rgba(200, 200, 200, 0.75);
+  }
+`;

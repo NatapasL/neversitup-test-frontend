@@ -4,6 +4,7 @@ import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 import { ButtonType } from '../../constants';
 import { PRIMARY, SECONDARY, WHITE } from '../../styles/colors';
+import { Small1 } from '../../styles/text';
 
 const ButtonTemplate = {
   [ButtonType.PRIMARY]: {
@@ -36,7 +37,7 @@ export const Button = ({
 
   return (
     <StyleButton buttonType={type} onClick={handleClick} width={width}>
-      {children}
+      <Small1>{children}</Small1>
     </StyleButton>
   );
 };
@@ -60,4 +61,5 @@ const StyleButton = styled.button<StyleButtonProps>`
   }};
   color: ${(props): string => ButtonTemplate[props.buttonType].TEXT_COLOR};
   width: ${(props): string => props.width ?? `auto`};
+  border-radius: 4px;
 `;

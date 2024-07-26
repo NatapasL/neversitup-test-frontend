@@ -24,7 +24,11 @@ export const TodoList = ({
 };
 
 const StyledTodoCard = styled.div`
-  max-height: 80vh;
-  overflow: scroll;
-  padding: 0;
+  overflow-y: scroll;
+  height: 100%;
+  padding: 16px;
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
 `;
