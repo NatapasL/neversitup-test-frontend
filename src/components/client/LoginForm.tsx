@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, ReactElement, useCallback } from 'react';
+import { FormEvent, ReactElement } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { InputType } from '../../constants';
@@ -35,15 +35,12 @@ export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
     e.preventDefault();
   };
 
-  const handleSubmit = useCallback(
-    form.handleSubmit((formValues) => {
-      onSubmit({
-        username: formValues[FormConfig.Username.NAME],
-        password: formValues[FormConfig.Password.NAME],
-      });
-    }),
-    [onSubmit, form.handleSubmit]
-  );
+  const handleSubmit = form.handleSubmit((formValues) => {
+    onSubmit({
+      username: formValues[FormConfig.Username.NAME],
+      password: formValues[FormConfig.Password.NAME],
+    });
+  });
 
   return (
     <StyledLoginForm>

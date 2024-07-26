@@ -33,21 +33,25 @@ export const TodoForm = ({
   todo,
   onSubmit,
   submitButtonText,
+  onCancel,
 }: TodoFormProps): ReactElement => {
   const form = useForm();
 
   const preventDefault = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
   };
-  const handleSubmit = useCallback(
-    form.handleSubmit((formValues) => {
-      onSubmit({
-        title: formValues[FormConfig.Title.NAME],
-        description: formValues[FormConfig.Description.NAME],
-      });
-    }),
-    [onSubmit, form.handleSubmit]
-  );
+
+  const handleSubmit = form.handleSubmit((formValues) => {
+    onSubmit({
+      title: formValues[FormConfig.Title.NAME],
+      description: formValues[FormConfig.Description.NAME],
+    });
+  });
+
+  const handleCancel = useCallback((): void => {
+    form.reset();
+    onCancel();
+  }, [form, onCancel]);
 
   return (
     <StyledTodoForm>
@@ -58,20 +62,28 @@ export const TodoForm = ({
             name={FormConfig.Title.NAME}
             maxLength={FormConfig.Title.MAX_LENGTH}
             required={FormConfig.Title.REQUIRED}
+            value={todo?.title ?? ``}
           />
           <Textarea
             label={FormConfig.Description.LABEL}
             name={FormConfig.Description.NAME}
             maxLength={FormConfig.Description.MAX_LENGTH}
             required={FormConfig.Description.REQUIRED}
+            value={todo?.description ?? ``}
           />
 
-          <div>
-            <Button onClick={handleSubmit} type={ButtonType.SECONDARY}>
+          <div className="button-container">
+            <Button
+              type={ButtonType.SECONDARY}
+              onClick={handleCancel}
+              width="84px"
+            >
               Cancel
             </Button>
 
-            <Button onClick={handleSubmit}>{submitButtonText}</Button>
+            <Button onClick={handleSubmit} width="84px">
+              {submitButtonText}
+            </Button>
           </div>
         </form>
       </FormProvider>
@@ -83,4 +95,9 @@ const StyledTodoForm = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  .button-container {
+    display: flex;
+    column-gap: 8px;
+  }
 `;

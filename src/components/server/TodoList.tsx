@@ -1,19 +1,30 @@
-'use server';
+'use client';
 
 import { ReactElement } from 'react';
+import styled from 'styled-components';
 import { Todo } from '../../types';
 import { TodoCard } from './TodoCard';
 
 export interface TodoListProps {
   todoList: Todo[];
+  onClickTodoCard: (todo: Todo) => void | Promise<void>;
 }
 
-export const TodoList = ({ todoList }: TodoListProps): ReactElement => {
+export const TodoList = ({
+  todoList,
+  onClickTodoCard,
+}: TodoListProps): ReactElement => {
   return (
-    <div>
+    <StyledTodoCard>
       {todoList.map((todo) => {
-        return <TodoCard key={todo.id} todo={todo} />;
+        return <TodoCard key={todo.id} todo={todo} onClick={onClickTodoCard} />;
       })}
-    </div>
+    </StyledTodoCard>
   );
 };
+
+const StyledTodoCard = styled.div`
+  max-height: 80vh;
+  overflow: scroll;
+  padding: 0;
+`;

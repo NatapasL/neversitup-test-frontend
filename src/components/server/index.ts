@@ -1,2 +1,3 @@
-export * from './TodoCard/TodoCard';
+export * from './TodoCard';
 export * from './TodoList';
+export * from './TodoListContainer';
