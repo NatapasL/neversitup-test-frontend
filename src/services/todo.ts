@@ -1,5 +1,5 @@
-import { API_BASE_URL } from '../../constants/api-url';
-import { deleteData, getData, patchData, postData } from '../../helpers';
+import { API_BASE_URL } from '../constants/api-url';
+import { deleteData, getData, patchData, postData } from '../helpers';
 import {
   CreateTodoResponse,
   CustomResponse,
@@ -7,11 +7,11 @@ import {
   GetAllTodoResponse,
   TodoBody,
   UpdateTodoResponse,
-} from '../../types';
+} from '../types';
 import {
   RawTodoResponse,
   TodoResponse,
-} from '../../types/services/todo/TodoResponse';
+} from '../types/services/todo/TodoResponse';
 import { getToken } from './token';
 
 const parseRawTodoResponse = (

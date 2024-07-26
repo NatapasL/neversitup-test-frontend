@@ -1,11 +1,11 @@
-import { API_BASE_URL } from '../../constants/api-url';
-import { postData } from '../../helpers';
+import { API_BASE_URL } from '../constants/api-url';
+import { postData } from '../helpers';
 import {
   CustomResponse,
   LoginBody,
   LoginResponse,
   RawLoginResponse,
-} from '../../types';
+} from '../types';
 import { clearToken, setToken } from './token';
 
 export const login = async (

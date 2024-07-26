@@ -7,7 +7,7 @@ import {
   getAllTodo,
   getToken,
   updateTodo,
-} from '../services/server';
+} from '../services';
 import { Todo, TodoFormValues } from '../types';
 
 const IndexPage = async (): Promise<ReactElement> => {
