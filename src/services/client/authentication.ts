@@ -1,30 +1,17 @@
 import { postData } from '../../helpers';
-import {
-  CustomResponse,
-  LoginBody,
-  LoginResponse,
-  RawLoginResponse,
-} from '../../types';
+import { CustomResponse, LoginBody, LoginResponse } from '../../types';
 
 const domain = `http://localhost:3000/api`;
 
-export const login = async (
+export const postLogin = async (
   formValues: LoginBody
 ): Promise<CustomResponse<LoginResponse> | undefined> => {
   try {
-    const rawResponse = await postData<RawLoginResponse>({
+    return await postData<LoginResponse>({
       baseUrl: domain,
       path: `/auth`,
       body: JSON.stringify(formValues),
     });
-
-    return {
-      ...rawResponse,
-      data: {
-        username: rawResponse.data?.username ?? ``,
-        accessToken: rawResponse.data?.access_token ?? ``,
-      },
-    };
   } catch (error) {
     return undefined;
   }
