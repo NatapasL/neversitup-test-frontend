@@ -1,11 +1,15 @@
 import { API_BASE_URL } from '../constants/api-url';
 import { postData } from '../helpers';
-import { CustomResponse, LoginResponse, RawLoginResponse } from '../types';
+import {
+  CustomResponse,
+  LoginBody,
+  LoginResponse,
+  RawLoginResponse,
+} from '../types';
 
-export const login = async (formValues: {
-  username: string;
-  password: string;
-}): Promise<CustomResponse<LoginResponse> | undefined> => {
+export const login = async (
+  formValues: LoginBody
+): Promise<CustomResponse<LoginResponse> | undefined> => {
   try {
     const rawResponse = await postData<RawLoginResponse>(
       API_BASE_URL,
