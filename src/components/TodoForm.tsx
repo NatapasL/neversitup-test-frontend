@@ -1,11 +1,11 @@
-import { FormEvent, ReactElement, useCallback } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import styled from "styled-components";
-import { ButtonType } from "../constants";
-import { Todo, TodoFormValues } from "../types";
-import { Button } from "./Button";
-import { Input } from "./Input";
-import { Textarea } from "./Textarea";
+import { FormEvent, ReactElement, useCallback } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import styled from 'styled-components';
+import { ButtonType } from '../constants';
+import { Todo, TodoFormValues } from '../types';
+import { Button } from './Button';
+import { Input } from './Input';
+import { Textarea } from './Textarea';
 
 const FormConfig = {
   Title: {
@@ -42,7 +42,6 @@ export const TodoForm = ({
   const handleSubmit = useCallback(
     form.handleSubmit((formValues) => {
       onSubmit({
-        id: todo?.id,
         title: formValues[FormConfig.Title.NAME],
         description: formValues[FormConfig.Description.NAME],
       });
