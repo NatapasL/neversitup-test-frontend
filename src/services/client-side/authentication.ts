@@ -12,11 +12,11 @@ export const login = async (
   formValues: LoginBody
 ): Promise<CustomResponse<LoginResponse> | undefined> => {
   try {
-    const rawResponse = await postData<RawLoginResponse>(
-      domain,
-      `/auth`,
-      JSON.stringify(formValues)
-    );
+    const rawResponse = await postData<RawLoginResponse>({
+      baseUrl: domain,
+      path: `/auth`,
+      body: JSON.stringify(formValues),
+    });
 
     return {
       ...rawResponse,
