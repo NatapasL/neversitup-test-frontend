@@ -1,28 +1,27 @@
-import { CustomResponse } from '../types';
+import {
+  CustomResponse,
+  DeleteDataRequest,
+  GetDataRequest,
+  PatchDataRequest,
+  PostDataRequest,
+} from '../types';
 
-const getToken = (): string | undefined => {
-  // TODO: get from cookie
-  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ii1PMmhIRVZHdmZ5QlBxemZoRXhGIiwiaWF0IjoxNzIxOTc2NDE2LCJleHAiOjE3MjIwNjI4MTZ9.VzwEevvVVl6E78XhIoZaiUfYhhgR3srlLXbzTUfBrPM';
-};
-
-const parseResponse = async (response: Response) => {
+export const parseResponse = async (response: Response) => {
   return response.text().then(function (text) {
     return text ? JSON.parse(text) : {};
   });
 };
 
-export const getData = async <ResponseDataType>(
-  baseUrl: string,
-  path: string,
-  options?: RequestInit
-): Promise<CustomResponse<ResponseDataType>> => {
-  const token = getToken();
+export const getData = async <ResponseDataType>({
+  baseUrl,
+  path,
+  token,
+  options,
+}: GetDataRequest): Promise<CustomResponse<ResponseDataType>> => {
   const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `GET`,
-    headers: {
-      Authorization: token ?? ``,
-    },
+    headers: { Authorization: `Bearer ${token}` },
     ...options,
   });
   const resJSON = await parseResponse(response);
@@ -33,17 +32,17 @@ export const getData = async <ResponseDataType>(
   };
 };
 
-export const postData = async <ResponseDataType>(
-  baseUrl: string,
-  path: string,
-  body?: BodyInit
-): Promise<CustomResponse<ResponseDataType>> => {
-  const token = getToken();
+export const postData = async <ResponseDataType>({
+  baseUrl,
+  path,
+  token,
+  body,
+}: PostDataRequest): Promise<CustomResponse<ResponseDataType>> => {
   const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `POST`,
     headers: {
-      Authorization: token ?? ``,
+      Authorization: `Bearer ${token}`,
       'Content-Type': `application/json`,
     },
     body: body,
@@ -56,17 +55,17 @@ export const postData = async <ResponseDataType>(
   };
 };
 
-export const patchData = async <ResponseDataType>(
-  baseUrl: string,
-  path: string,
-  body: BodyInit
-): Promise<CustomResponse<ResponseDataType>> => {
-  const token = getToken();
+export const patchData = async <ResponseDataType>({
+  baseUrl,
+  path,
+  token,
+  body,
+}: PatchDataRequest): Promise<CustomResponse<ResponseDataType>> => {
   const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `PATCH`,
     headers: {
-      Authorization: token ?? ``,
+      Authorization: `Bearer ${token}`,
       'Content-Type': `application/json`,
     },
     body: body,
@@ -79,17 +78,17 @@ export const patchData = async <ResponseDataType>(
   };
 };
 
-export const deleteData = async <ResponseDataType>(
-  baseUrl: string,
-  path: string,
-  body?: BodyInit
-): Promise<CustomResponse<ResponseDataType>> => {
-  const token = getToken();
+export const deleteData = async <ResponseDataType>({
+  baseUrl,
+  path,
+  token,
+  body,
+}: DeleteDataRequest): Promise<CustomResponse<ResponseDataType>> => {
   const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `DELETE`,
     headers: {
-      Authorization: token ?? ``,
+      Authorization: `Bearer ${token}`,
       'Content-Type': `application/json`,
     },
     body: body,

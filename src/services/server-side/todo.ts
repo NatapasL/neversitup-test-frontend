@@ -1,18 +1,25 @@
-import { getServerData } from '../../helpers/server-side-fetch';
+import { getData } from '../../helpers';
 import { CustomResponse, GetAllTodoResponse } from '../../types';
 import {
   RawTodoResponse,
   TodoResponse,
 } from '../../types/services/todo/TodoResponse';
 
+const getToken = async (): Promise<string | undefined> => {
+  const { cookies } = await import(`next/headers`);
+  return cookies().get(`token`)?.value;
+};
+
 export const getAllTodo = async (): Promise<
   CustomResponse<GetAllTodoResponse<TodoResponse>> | undefined
 > => {
   try {
-    const response = await getServerData<GetAllTodoResponse<RawTodoResponse>>(
-      `https://candidate-assignment.neversitup.com`,
-      `/todo`
-    );
+    const token = await getToken();
+    const response = await getData<GetAllTodoResponse<RawTodoResponse>>({
+      baseUrl: `https://candidate-assignment.neversitup.com`,
+      path: `/todo`,
+      token: token ?? ``,
+    });
 
     return {
       ...response,
