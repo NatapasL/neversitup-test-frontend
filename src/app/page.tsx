@@ -10,8 +10,8 @@ import {
 } from '../services/server';
 import { Todo, TodoFormValues } from '../types';
 
-const Page = async (): Promise<ReactElement> => {
-  const token = await getToken();
+const IndexPage = async (): Promise<ReactElement> => {
+  const token = getToken();
   if (!token) {
     redirect(`/login`);
   }
@@ -72,4 +72,4 @@ const Page = async (): Promise<ReactElement> => {
   );
 };
 
-export default Page;
+export default IndexPage;

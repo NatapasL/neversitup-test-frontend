@@ -4,5 +4,6 @@ export interface RawLoginResponse {
 }
 
 export interface LoginResponse {
-  success: boolean;
+  username: string;
+  accessToken: string;
 }

@@ -12,11 +12,7 @@ import {
   RawTodoResponse,
   TodoResponse,
 } from '../../types/services/todo/TodoResponse';
-
-const getToken = async (): Promise<string | undefined> => {
-  const { cookies } = await import(`next/headers`);
-  return cookies().get(`token`)?.value;
-};
+import { getToken } from './token';
 
 const parseRawTodoResponse = (
   rawTodo: Partial<RawTodoResponse>
@@ -38,7 +34,7 @@ export const getAllTodo = async (): Promise<
   CustomResponse<GetAllTodoResponse<TodoResponse>> | undefined
 > => {
   try {
-    const token = await getToken();
+    const token = getToken();
     const response = await getData<GetAllTodoResponse<RawTodoResponse>>({
       baseUrl: API_BASE_URL,
       path: `/todo`,
@@ -63,7 +59,7 @@ export const createTodo = async (
   body: TodoBody
 ): Promise<CustomResponse<CreateTodoResponse<TodoResponse>> | undefined> => {
   try {
-    const token = await getToken();
+    const token = getToken();
     const response = await postData<CreateTodoResponse<RawTodoResponse>>({
       baseUrl: API_BASE_URL,
       path: `/todo`,
@@ -91,7 +87,7 @@ export const updateTodo = async <
   body: Body
 ): Promise<CustomResponse<UpdateTodoResponse<Keys>> | undefined> => {
   try {
-    const token = await getToken();
+    const token = getToken();
     return await patchData({
       baseUrl: API_BASE_URL,
       path: `/todo/${id}`,
@@ -107,7 +103,7 @@ export const deleteTodo = async (
   id: string
 ): Promise<CustomResponse<DeleteTodoResponse> | undefined> => {
   try {
-    const token = await getToken();
+    const token = getToken();
     return await deleteData({
       baseUrl: API_BASE_URL,
       path: `/todo/${id}`,
