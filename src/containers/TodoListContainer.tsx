@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/navigation';
 import { ReactElement, useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Button, ConfirmDialog, TodoFormModal } from '../components/client';
-import { TodoList } from '../components/server';
+import { Button, ConfirmDialog, TodoFormModal } from '../components';
+import { TodoList } from '../components/TodoList';
 import { Todo, TodoFormValues } from '../types';
 
 export interface TodoListContainerProps {

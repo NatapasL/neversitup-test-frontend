@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactElement } from 'react';
-import { LoginForm } from '../components/client';
+import { LoginForm } from '../components';
 import { LoginFormValues } from '../types';
 
 export interface LoginContainerProps {
