@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactElement, ReactNode } from 'react';
-import { ButtonType } from '../constants';
+import { ButtonType } from '../../constants';
 
 export interface ButtonProps {
   children: ReactNode | ReactNode[];
