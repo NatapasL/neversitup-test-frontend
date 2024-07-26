@@ -1,21 +1,17 @@
-import { setCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 import { ReactElement } from 'react';
-import { LoginForm } from '../components/LoginForm';
-import { login } from '../services/client';
+import { LoginForm } from '../components/client/LoginForm';
+import { postLogin } from '../services/client';
 import { LoginFormValues } from '../types';
 
 const AuthPage = (): ReactElement => {
+  const router = useRouter();
+
   const handleSubmit = async (formValues: LoginFormValues): Promise<void> => {
-    const response = await login(formValues);
-    console.log(response);
-    console.log(response?.data);
+    const response = await postLogin(formValues);
 
     if (response?.status === 201) {
-      setCookie(`token`, response.data?.accessToken ?? ``, {
-        httpOnly: true,
-        secure: true,
-        path: `/`,
-      });
+      router.push(`/`);
     }
   };
 
