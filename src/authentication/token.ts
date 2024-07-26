@@ -3,6 +3,10 @@ import { Time } from '../constants';
 
 const TOKEN_KEY = `token`;
 
+export const hasToken = (): boolean => {
+  return cookies().has(TOKEN_KEY);
+};
+
 export const getToken = (): string | undefined => {
   return cookies().get(TOKEN_KEY)?.value;
 };

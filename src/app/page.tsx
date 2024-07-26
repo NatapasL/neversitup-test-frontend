@@ -1,25 +1,11 @@
-import { redirect } from 'next/navigation';
 import { ReactElement } from 'react';
+import { AuthGate } from '../authentication/AuthGate';
 import { TodoListContainer } from '../containers';
-import {
-  createTodo,
-  deleteTodo,
-  getAllTodo,
-  getToken,
-  updateTodo,
-} from '../services';
+import { createTodo, deleteTodo, getAllTodo, updateTodo } from '../services';
 import { Todo, TodoFormValues } from '../types';
 
 const IndexPage = async (): Promise<ReactElement> => {
-  const token = getToken();
-  if (!token) {
-    redirect(`/login`);
-  }
-
   const response = await getAllTodo();
-  if (response?.status === 401) {
-    redirect(`/login`);
-  }
 
   const handleCreateTodo = async (
     formValues: TodoFormValues
@@ -54,12 +40,14 @@ const IndexPage = async (): Promise<ReactElement> => {
   });
 
   return (
-    <TodoListContainer
-      todoList={todoList}
-      onCreateTodo={handleCreateTodo}
-      onUpdateTodo={handelUpdateTodo}
-      onDeleteTodo={handleDeleteTodo}
-    ></TodoListContainer>
+    <AuthGate>
+      <TodoListContainer
+        todoList={todoList}
+        onCreateTodo={handleCreateTodo}
+        onUpdateTodo={handelUpdateTodo}
+        onDeleteTodo={handleDeleteTodo}
+      ></TodoListContainer>
+    </AuthGate>
   );
 };
 

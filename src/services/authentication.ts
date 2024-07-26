@@ -1,3 +1,4 @@
+import { clearToken, setToken } from '../authentication/token';
 import { API_BASE_URL } from '../constants/api-url';
 import { postData } from '../helpers';
 import {
@@ -6,7 +7,6 @@ import {
   LoginResponse,
   RawLoginResponse,
 } from '../types';
-import { clearToken, setToken } from './token';
 
 export const login = async (
   formValues: LoginBody

@@ -1,3 +1,4 @@
+import { handleUnauthorized } from '../authentication/handle-unauthorized';
 import {
   CustomResponse,
   DeleteDataRequest,
@@ -24,6 +25,11 @@ export const getData = async <ResponseDataType>({
     headers: { Authorization: `Bearer ${token}` },
     ...options,
   });
+  if (response.status === 401) {
+    handleUnauthorized();
+    throw new Error(`Un`);
+  }
+
   const resJSON = await parseResponse(response);
   return {
     status: response.status,
@@ -47,6 +53,11 @@ export const postData = async <ResponseDataType>({
     },
     body: body,
   });
+
+  if (response.status === 401) {
+    handleUnauthorized();
+  }
+
   const resJSON = await parseResponse(response);
   return {
     status: response.status,
@@ -70,6 +81,11 @@ export const patchData = async <ResponseDataType>({
     },
     body: body,
   });
+
+  if (response.status === 401) {
+    handleUnauthorized();
+  }
+
   const resJSON = await parseResponse(response);
   return {
     status: response.status,
@@ -93,6 +109,11 @@ export const deleteData = async <ResponseDataType>({
     },
     body: body,
   });
+
+  if (response.status === 401) {
+    handleUnauthorized();
+  }
+
   const resJSON = await parseResponse(response);
   return {
     status: response.status,
