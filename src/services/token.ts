@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { Time } from '../../constants';
+import { Time } from '../constants';
 
 const TOKEN_KEY = `token`;
 
