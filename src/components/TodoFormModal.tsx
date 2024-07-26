@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactElement, useMemo } from 'react';
+import styled from 'styled-components';
 import { Todo, TodoFormValues } from '../types';
 import { Modal } from './Modal';
 import { TodoForm } from './TodoForm';
@@ -40,12 +41,18 @@ export const TodoFormModal = ({
 
   return (
     <Modal title={modalTitle} open={open} onClose={onClose}>
-      <TodoForm
-        onSubmit={onSubmit}
-        onCancel={onClose}
-        submitButtonText={submitButtonText}
-        todo={todo}
-      ></TodoForm>
+      <StyledTodoFormModal>
+        <TodoForm
+          onSubmit={onSubmit}
+          onCancel={onClose}
+          submitButtonText={submitButtonText}
+          todo={todo}
+        ></TodoForm>
+      </StyledTodoFormModal>
     </Modal>
   );
 };
+
+const StyledTodoFormModal = styled.div`
+  margin-top: 16px;
+`;
