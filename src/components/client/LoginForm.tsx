@@ -1,8 +1,10 @@
+'use client';
+
 import { FormEvent, ReactElement, useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { InputType } from '../constants';
-import { LoginFormValues } from '../types';
+import { InputType } from '../../constants';
+import { LoginFormValues } from '../../types';
 import { Button } from './Button';
 import { Input } from './Input';
 

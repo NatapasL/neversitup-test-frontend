@@ -5,7 +5,7 @@ import { ButtonType } from '../constants';
 import { Todo, TodoFormValues } from '../types';
 import { Button } from './Button';
 import { Input } from './Input';
-import { Textarea } from './Textarea';
+import { Textarea } from './client/Textarea';
 
 const FormConfig = {
   Title: {
