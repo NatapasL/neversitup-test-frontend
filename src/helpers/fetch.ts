@@ -2,7 +2,7 @@ import { CustomResponse } from '../types';
 
 const getToken = (): string | undefined => {
   // TODO: get from cookie
-  return '';
+  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ii1PMmhIRVZHdmZ5QlBxemZoRXhGIiwiaWF0IjoxNzIxOTc2NDE2LCJleHAiOjE3MjIwNjI4MTZ9.VzwEevvVVl6E78XhIoZaiUfYhhgR3srlLXbzTUfBrPM';
 };
 
 const parseResponse = async (response: Response) => {
@@ -52,13 +52,13 @@ export const postData = async <ResponseDataType>(
   };
 };
 
-export const putData = async <ResponseDataType>(
+export const patchData = async <ResponseDataType>(
   url: string,
   body: BodyInit
 ): Promise<CustomResponse<ResponseDataType>> => {
   const token = getToken();
   const response = await fetch(url, {
-    method: `PUT`,
+    method: `PATCH`,
     headers: {
       Authorization: token ?? ``,
       'Content-Type': `application/json`,
