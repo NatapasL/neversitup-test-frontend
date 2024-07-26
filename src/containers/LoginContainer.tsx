@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactElement } from 'react';
-import { LoginFormValues } from '../../types';
-import { LoginForm } from '../client';
+import { LoginForm } from '../components/client';
+import { LoginFormValues } from '../types';
 
 export interface LoginContainerProps {
   onSubmit: (formValues: LoginFormValues) => void | Promise<void>;

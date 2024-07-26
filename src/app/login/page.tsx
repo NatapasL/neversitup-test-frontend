@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { ReactElement } from 'react';
-import { LoginContainer } from '../../components/server';
+import { LoginContainer } from '../../containers';
 import { login } from '../../services/server';
 import { LoginFormValues } from '../../types';
 

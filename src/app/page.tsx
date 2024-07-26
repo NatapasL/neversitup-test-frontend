@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { ReactElement } from 'react';
-import { TodoListContainer } from '../components/server';
+import { TodoListContainer } from '../containers';
 import {
   createTodo,
   deleteTodo,
