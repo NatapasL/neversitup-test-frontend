@@ -248,6 +248,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/fontawesome-common-types@npm:6.6.0":
+  version: 6.6.0
+  resolution: "@fortawesome/fontawesome-common-types@npm:6.6.0"
+  checksum: f8753e3ea603224df1b975059f6cea6168aac3c16d3e73d1a1a95c9a6d7550e3d843162f87946f746b6d8a7be7f8602c399c7e35356c9033d628ce23e83a819f
+  languageName: node
+  linkType: hard
+
+"@fortawesome/fontawesome-svg-core@npm:^6.6.0":
+  version: 6.6.0
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.6.0"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.6.0
+  checksum: 3eaf5d3a2f9d6b362a2d01889eadecb7fe3d86a5ba7c29b5d9653a00206d329aae78e18160d46009955fa80e40ab523a3b35032d45a52014ced15b9510c264c9
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-solid-svg-icons@npm:^6.6.0":
+  version: 6.6.0
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.6.0"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.6.0
+  checksum: 145ae70fe0df253ed5e3330f88fde7236518700311d55019584f1633da67eef65e83838b948e5f4709d70beac3ba3c6b0b5ed58932127e69651b15e8d2e7ee7f
+  languageName: node
+  linkType: hard
+
+"@fortawesome/react-fontawesome@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@fortawesome/react-fontawesome@npm:0.2.2"
+  dependencies:
+    prop-types: ^15.8.1
+  peerDependencies:
+    "@fortawesome/fontawesome-svg-core": ~1 || ~6
+    react: ">=16.3"
+  checksum: e4bed35bfb7fc88b5bcf2305d08ee1835b82fa7705945c4d310df33bb747b05ef07a33ac9db643c8870ca4f835228978290d84d82f2c6c6a70b9ab4c886731a6
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -533,6 +570,13 @@ __metadata:
     "@types/react": "*"
     csstype: ^3.0.2
   checksum: 7868066a15afe42d8b353953fc196a7f11a9918b1c980f51d21bb9b49e309c7fe2d730be2d3dc48e92ab4de20f44a3c9dfe6cc98b6ea4dd02655e6f8128171b6
+  languageName: node
+  linkType: hard
+
+"@types/use-sync-external-store@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@types/use-sync-external-store@npm:0.0.3"
+  checksum: 161ddb8eec5dbe7279ac971531217e9af6b99f7783213566d2b502e2e2378ea19cf5e5ea4595039d730aa79d3d35c6567d48599f69773a02ffcff1776ec2a44e
   languageName: node
   linkType: hard
 
@@ -2673,6 +2717,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "neversitup-test-frontend@workspace:."
   dependencies:
+    "@fortawesome/fontawesome-svg-core": ^6.6.0
+    "@fortawesome/free-solid-svg-icons": ^6.6.0
+    "@fortawesome/react-fontawesome": ^0.2.2
     "@types/node": ^20
     "@types/react": ^18
     "@types/react-dom": ^18
@@ -2686,6 +2733,7 @@ __metadata:
     react: ^18
     react-dom: ^18
     react-hook-form: ^7.52.1
+    react-redux: ^9.1.2
     redux: ^5.0.1
     styled-components: ^6.1.12
     typescript: 5.5.4
@@ -3029,6 +3077,25 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+  languageName: node
+  linkType: hard
+
+"react-redux@npm:^9.1.2":
+  version: 9.1.2
+  resolution: "react-redux@npm:9.1.2"
+  dependencies:
+    "@types/use-sync-external-store": ^0.0.3
+    use-sync-external-store: ^1.0.0
+  peerDependencies:
+    "@types/react": ^18.2.25
+    react: ^18.0
+    redux: ^5.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    redux:
+      optional: true
+  checksum: 1ee9cf41f29f68267320b4fc3bcf6a76a3825c82441612582678ddd827a2b60834f687d2a8b755c905885dfce476a1eb41af42b36f4dd71f8ee9991296a1e515
   languageName: node
   linkType: hard
 
@@ -3678,6 +3745,15 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:^1.0.0":
+  version: 1.2.2
+  resolution: "use-sync-external-store@npm:1.2.2"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: fe07c071c4da3645f112c38c0e57beb479a8838616ff4e92598256ecce527f2888c08febc7f9b2f0ce2f0e18540ba3cde41eb2035e4fafcb4f52955037098a81
   languageName: node
   linkType: hard
 
