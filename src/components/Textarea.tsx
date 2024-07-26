@@ -1,10 +1,10 @@
-import { ReactElement, useMemo } from "react";
-import { useFormContext } from "react-hook-form";
-import styled from "styled-components";
-import { InputContainer } from "./InputContainer";
+import { ReactElement, useMemo } from 'react';
+import { useFormContext } from 'react-hook-form';
+import styled from 'styled-components';
+import { InputContainer } from './InputContainer';
 
-const REQUIRED_ERROR_MESSAGE = `Please complete this field`;
-const MAX_LENGTH_ERROR_MESSAGE = `Max :maxLength: characters`;
+const REQUIRED_ERROR_MESSAGE = 'Please complete this field';
+const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters';
 
 export interface DescriptionInput {
   name: string;
@@ -28,7 +28,7 @@ export const Textarea = ({
 
   const errorMessage = useMemo((): string => {
     return errors[name]?.message?.toString() ?? ``;
-  }, [errors[name]?.message]);
+  }, [errors, name]);
 
   const maxLengthErrorMessage = useMemo(() => {
     return MAX_LENGTH_ERROR_MESSAGE.replace(/:maxLength:/, `${maxLength}`);
@@ -47,7 +47,7 @@ export const Textarea = ({
             value: maxLength,
             message: maxLengthErrorMessage,
           },
-          value: value ?? ``,
+          value: value ?? '',
         })}
       />
     </InputContainer>
