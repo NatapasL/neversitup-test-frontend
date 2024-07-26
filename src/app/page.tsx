@@ -26,10 +26,7 @@ const IndexPage = async (): Promise<ReactElement> => {
   ): Promise<void> => {
     'use server';
 
-    const response = await createTodo(formValues);
-    if (response?.status === 201) {
-      return;
-    }
+    await createTodo(formValues);
   };
 
   const handelUpdateTodo = async (
@@ -38,19 +35,13 @@ const IndexPage = async (): Promise<ReactElement> => {
   ): Promise<void> => {
     'use server';
 
-    const response = await updateTodo(id, formValues);
-    if (response?.status == 200) {
-      return;
-    }
+    await updateTodo(id, formValues);
   };
 
   const handleDeleteTodo = async (id: string): Promise<void> => {
     'use server';
 
-    const response = await deleteTodo(id);
-    if (response?.status === 200) {
-      return;
-    }
+    await deleteTodo(id);
   };
 
   const todoList = (response?.data?.data ?? []).map((todoResponse): Todo => {
