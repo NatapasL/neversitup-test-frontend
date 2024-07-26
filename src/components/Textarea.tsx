@@ -6,7 +6,7 @@ import { InputContainer } from './InputContainer';
 const REQUIRED_ERROR_MESSAGE = 'Please complete this field';
 const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters';
 
-export interface DescriptionInput {
+export interface TextareaProps {
   name: string;
   label: string;
   required?: boolean;
@@ -20,7 +20,7 @@ export const Textarea = ({
   required,
   value,
   maxLength,
-}: DescriptionInput): ReactElement => {
+}: TextareaProps): ReactElement => {
   const {
     register,
     formState: { errors },
