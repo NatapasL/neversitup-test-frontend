@@ -2,9 +2,9 @@
 
 import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
-import { ButtonType } from '../../constants';
-import { PRIMARY, SECONDARY, WHITE } from '../../styles/colors';
-import { Small1 } from '../../styles/text';
+import { ButtonType } from '../constants';
+import { PRIMARY, SECONDARY, WHITE } from '../styles/colors';
+import { Small1 } from '../styles/text';
 
 const ButtonTemplate = {
   [ButtonType.PRIMARY]: {

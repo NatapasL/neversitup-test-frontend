@@ -1,8 +1,8 @@
 import { FormEvent, ReactElement, useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { ButtonType } from '../../constants';
-import { Todo, TodoFormValues } from '../../types';
+import { ButtonType } from '../constants';
+import { Todo, TodoFormValues } from '../types';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Textarea } from './Textarea';

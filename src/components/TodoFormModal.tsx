@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactElement, useMemo } from 'react';
-import { Todo, TodoFormValues } from '../../types';
+import { Todo, TodoFormValues } from '../types';
 import { Modal } from './Modal';
 import { TodoForm } from './TodoForm';
 

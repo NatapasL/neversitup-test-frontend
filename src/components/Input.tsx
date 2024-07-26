@@ -3,7 +3,7 @@
 import { ReactElement, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import { InputType } from '../../constants';
+import { InputType } from '../constants';
 import { InputContainer } from './InputContainer';
 
 const REQUIRED_ERROR_MESSAGE = 'Please complete this field';

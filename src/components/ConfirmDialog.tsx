@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import styled from 'styled-components';
-import { ButtonType } from '../../constants';
-import { Body1 } from '../../styles/text';
+import { ButtonType } from '../constants';
+import { Body1 } from '../styles/text';
 import { Button } from './Button';
 import { Modal } from './Modal';
 

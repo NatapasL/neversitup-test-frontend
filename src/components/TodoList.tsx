@@ -2,7 +2,7 @@
 
 import { ReactElement } from 'react';
 import styled from 'styled-components';
-import { Todo } from '../../types';
+import { Todo } from '../types';
 import { TodoCard } from './TodoCard';
 
 export interface TodoListProps {
