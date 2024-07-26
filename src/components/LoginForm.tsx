@@ -45,7 +45,7 @@ export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
   return (
     <StyledLoginForm>
       <FormProvider {...form}>
-        <form onSubmit={preventDefault} noValidate>
+        <form className="form" onSubmit={preventDefault} noValidate>
           <Input
             name={FormConfig.Username.NAME}
             label={FormConfig.Username.LABEL}
@@ -68,4 +68,10 @@ export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
   );
 };
 
-const StyledLoginForm = styled.div``;
+const StyledLoginForm = styled.div`
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+`;
