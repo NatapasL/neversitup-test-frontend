@@ -1,19 +1,20 @@
-import { API_BASE_URL } from '../constants/api-url';
-import { postData } from '../helpers';
+import { postData } from '../../helpers';
 import {
   CustomResponse,
   LoginBody,
   LoginResponse,
   RawLoginResponse,
-} from '../types';
+} from '../../types';
+
+const domain = `http://localhost:3000/api`;
 
 export const login = async (
   formValues: LoginBody
 ): Promise<CustomResponse<LoginResponse> | undefined> => {
   try {
     const rawResponse = await postData<RawLoginResponse>(
-      API_BASE_URL,
-      `/todo`,
+      domain,
+      `/auth`,
       JSON.stringify(formValues)
     );
 
