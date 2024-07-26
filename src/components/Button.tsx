@@ -1,12 +1,16 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { ButtonType } from '../constants';
 
 export interface ButtonProps {
-  text: string;
-  type: ButtonType;
-  onClick: () => void | Promise<void>;
+  children: ReactNode | ReactNode[];
+  type?: ButtonType;
+  onClick?: () => void | Promise<void>;
 }
 
-export const Button = (props: ButtonProps): ReactElement => {
-  return <button onClick={props.onClick}>{props.text}</button>;
+export const Button = ({
+  children,
+  onClick,
+  type = ButtonType.PRIMARY,
+}: ButtonProps): ReactElement => {
+  return <button onClick={onClick}>{children}</button>;
 };

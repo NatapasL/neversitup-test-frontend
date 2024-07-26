@@ -46,7 +46,7 @@ export const TodoForm = ({
         description: formValues[FormConfig.Description.NAME],
       });
     }),
-    [onSubmit]
+    [onSubmit, form.handleSubmit]
   );
 
   return (
@@ -67,17 +67,11 @@ export const TodoForm = ({
           />
 
           <div>
-            <Button
-              text="Cancel"
-              onClick={handleSubmit}
-              type={ButtonType.SECONDARY}
-            ></Button>
+            <Button onClick={handleSubmit} type={ButtonType.SECONDARY}>
+              Cancel
+            </Button>
 
-            <Button
-              text={submitButtonText}
-              onClick={handleSubmit}
-              type={ButtonType.PRIMARY}
-            ></Button>
+            <Button onClick={handleSubmit}>{submitButtonText}</Button>
           </div>
         </form>
       </FormProvider>
