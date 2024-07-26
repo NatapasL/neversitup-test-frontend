@@ -5,7 +5,7 @@ import {
   CustomResponse,
   DeleteTodoResponse,
   GetAllTodoResponse,
-  TodoFormValues,
+  TodoBody,
   UpdateTodoResponse,
 } from '../types';
 
@@ -20,28 +20,24 @@ export const getAllTodo = async (): Promise<
 };
 
 export const createTodo = async (
-  formValues: TodoFormValues
+  body: TodoBody
 ): Promise<CustomResponse<CreateTodoResponse> | undefined> => {
   try {
-    return await postData(API_BASE_URL, `/todo`, JSON.stringify(formValues));
+    return await postData(API_BASE_URL, `/todo`, JSON.stringify(body));
   } catch (error) {
     return undefined;
   }
 };
 
 export const updateTodo = async <
-  Keys extends keyof Partial<TodoFormValues>,
-  FormValues extends TodoFormValues[Keys]
+  Keys extends keyof Partial<TodoBody>,
+  Body extends TodoBody[Keys]
 >(
   id: string,
-  formValues: FormValues
+  body: Body
 ): Promise<CustomResponse<UpdateTodoResponse<Keys>> | undefined> => {
   try {
-    return await patchData(
-      API_BASE_URL,
-      `/todo/${id}`,
-      JSON.stringify(formValues)
-    );
+    return await patchData(API_BASE_URL, `/todo/${id}`, JSON.stringify(body));
   } catch (error) {
     return undefined;
   }
