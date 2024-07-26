@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { ButtonType } from "../constants";
+import { ReactElement } from 'react';
+import { ButtonType } from '../constants';
 
 export interface ButtonProps {
   text: string;
