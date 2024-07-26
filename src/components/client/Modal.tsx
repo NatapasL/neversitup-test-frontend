@@ -2,17 +2,19 @@
 
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ReactElement, ReactNode } from 'react';
+import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { MODAL_ROOT_ID, ZIndex } from '../../constants';
 import { WHITE } from '../../styles/colors';
+import { Title3 } from '../../styles/text';
 
 export interface ModalProps {
   open: boolean;
   title: string;
   onClose: () => void | Promise<void>;
   children: ReactNode | ReactNode[];
+  showCloseButton?: boolean;
 }
 
 export const Modal = ({
@@ -20,21 +22,30 @@ export const Modal = ({
   title,
   onClose,
   children,
+  showCloseButton = true,
 }: ModalProps): ReactElement => {
   if (!open) return <div />;
 
   const modalRoot = document.getElementById(MODAL_ROOT_ID);
   if (!modalRoot) return <div />;
 
+  const stopPropagation: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.stopPropagation();
+  };
+
   return ReactDOM.createPortal(
-    <StyledModal open={open}>
-      <div className="modal-container">
-        <div className="modal-header">
+    <StyledModal onClick={onClose}>
+      <div className="modal-container" onClick={stopPropagation}>
+        <Title3 className="modal-header">
           <div className="modal-title">{title}</div>
-          <button className="close-modal-button" onClick={onClose}>
-            <FontAwesomeIcon size="lg" icon={faX} />
-          </button>
-        </div>
+          {showCloseButton ? (
+            <button className="close-modal-button" onClick={onClose}>
+              <FontAwesomeIcon size="lg" icon={faX} />
+            </button>
+          ) : (
+            <></>
+          )}
+        </Title3>
         <div className="modal-body">{children}</div>
       </div>
     </StyledModal>,
@@ -42,11 +53,7 @@ export const Modal = ({
   );
 };
 
-interface StyledModalProps {
-  open: boolean;
-}
-
-const StyledModal = styled.div<StyledModalProps>`
+const StyledModal = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -54,7 +61,7 @@ const StyledModal = styled.div<StyledModalProps>`
   top: 0;
   z-index: ${ZIndex.MAX};
   background: rgba(50, 50, 50, 0.75);
-  display: ${(props): string => (props.open ? `flex` : `none`)};
+  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -63,8 +70,9 @@ const StyledModal = styled.div<StyledModalProps>`
     max-width: 100vw;
     overflow: hidden;
     background-color: ${WHITE};
-    height: 480px;
-    padding: 16px;
+    padding: 16px 16px;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(37, 42, 51, 0.08);
   }
 
   .modal-header {

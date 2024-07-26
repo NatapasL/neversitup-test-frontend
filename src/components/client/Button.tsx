@@ -62,4 +62,5 @@ const StyleButton = styled.button<StyleButtonProps>`
   color: ${(props): string => ButtonTemplate[props.buttonType].TEXT_COLOR};
   width: ${(props): string => props.width ?? `auto`};
   border-radius: 4px;
+  cursor: pointer;
 `;

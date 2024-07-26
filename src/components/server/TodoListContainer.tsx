@@ -3,10 +3,10 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/navigation';
-import { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Todo, TodoFormValues } from '../../types';
-import { TodoFormModal } from '../client';
+import { ConfirmDialog, TodoFormModal } from '../client';
 import { Button } from '../client/Button';
 import { TodoList } from './TodoList';
 
@@ -17,15 +17,19 @@ export interface TodoListContainerProps {
     id: string,
     formValues: TodoFormValues
   ) => void | Promise<void>;
+  onDeleteTodo: (id: string) => void | Promise<void>;
 }
 
 export const TodoListContainer = ({
   todoList,
   onCreateTodo,
   onUpdateTodo,
+  onDeleteTodo,
 }: TodoListContainerProps): ReactElement => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [editingTodo, setEditingTodo] = useState<Todo | undefined>();
+  const [selectedTodo, setSelectedTodo] = useState<Todo | undefined>();
+  const [processing, setProcessing] = useState<boolean>(false);
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -34,29 +38,65 @@ export const TodoListContainer = ({
   }, []);
 
   const handleClickTodoCard = (todo: Todo): void => {
-    setEditingTodo(todo);
+    setSelectedTodo(todo);
     setModalOpen(true);
   };
 
   const handleCloseModal = useCallback((): void => {
-    setEditingTodo(undefined);
+    setSelectedTodo(undefined);
     setModalOpen(false);
   }, []);
 
   const handleSubmitTodoForm = useCallback(
     async (formValues: TodoFormValues): Promise<void> => {
-      if (editingTodo?.id) {
-        await onUpdateTodo?.(editingTodo.id, formValues);
+      if (processing) return;
+
+      setProcessing(true);
+      if (selectedTodo?.id) {
+        await onUpdateTodo?.(selectedTodo.id, formValues);
       } else {
         await onCreateTodo?.(formValues);
       }
+      setProcessing(false);
 
-      setEditingTodo(undefined);
+      setSelectedTodo(undefined);
       setModalOpen(false);
       router.refresh();
     },
-    [editingTodo?.id, onUpdateTodo, onCreateTodo, router]
+    [selectedTodo?.id, onUpdateTodo, onCreateTodo, router, processing]
   );
+
+  const handleDeleteTodo = useCallback(
+    async (todo: Todo): Promise<void> => {
+      if (processing) return;
+
+      setProcessing(true);
+      setConfirmDialogOpen(true);
+      setSelectedTodo(todo);
+    },
+    [processing]
+  );
+
+  const confirmDialogDescription = useMemo(
+    () => `Want delete ${selectedTodo?.title}`,
+    [selectedTodo?.title]
+  );
+
+  const handelConfirmDeleteTodo = useCallback(async (): Promise<void> => {
+    if (selectedTodo?.id) {
+      await onDeleteTodo(selectedTodo.id);
+    }
+    setProcessing(false);
+
+    setSelectedTodo(undefined);
+    setConfirmDialogOpen(false);
+    router.refresh();
+  }, [onDeleteTodo, router, selectedTodo?.id]);
+
+  const handleCancelDeleteTodo = useCallback((): void => {
+    setProcessing(false);
+    setConfirmDialogOpen(false);
+  }, []);
 
   return (
     <>
@@ -64,12 +104,15 @@ export const TodoListContainer = ({
         <TodoList
           todoList={todoList}
           onClickTodoCard={handleClickTodoCard}
+          onClickDeleteTodoCard={handleDeleteTodo}
         ></TodoList>
 
         <div className="create-todo-button-container">
           <Button onClick={handleClickCreateTodo} width="100%">
-            <FontAwesomeIcon size="lg" icon={faPlus} />
-            Create
+            <div className="create-todo-button-inner">
+              <FontAwesomeIcon size="lg" icon={faPlus} />
+              Create
+            </div>
           </Button>
         </div>
       </StyledTodoListContainer>
@@ -77,9 +120,16 @@ export const TodoListContainer = ({
       <TodoFormModal
         open={modalOpen}
         onClose={handleCloseModal}
-        todo={editingTodo}
+        todo={selectedTodo}
         onSubmit={handleSubmitTodoForm}
       ></TodoFormModal>
+
+      <ConfirmDialog
+        open={confirmDialogOpen}
+        description={confirmDialogDescription}
+        onSubmit={handelConfirmDeleteTodo}
+        onCancel={handleCancelDeleteTodo}
+      />
     </>
   );
 };
@@ -89,12 +139,17 @@ const StyledTodoListContainer = styled.div`
   height: calc(100vh - 16px);
   display: grid;
   grid-template-rows: 1fr 64px;
-  /* row-gap: 32px; */
   overflow-x: hidden;
 
   .create-todo-button-container {
+    padding: 4px;
     padding-top: 16px;
-    box-shadow: 2px 47px 139px 87px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 47px 32px 87px rgba(200, 200, 200, 0.75);
+    box-shadow: 0 -8px 24px rgba(37, 42, 51, 0.08);
+  }
+
+  .create-todo-button-inner {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
   }
 `;

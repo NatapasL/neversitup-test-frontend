@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { TodoListContainer } from '../components/server';
 import {
   createTodo,
+  deleteTodo,
   getAllTodo,
   getToken,
   updateTodo,
@@ -43,6 +44,15 @@ const Page = async (): Promise<ReactElement> => {
     }
   };
 
+  const handleDeleteTodo = async (id: string): Promise<void> => {
+    'use server';
+
+    const response = await deleteTodo(id);
+    if (response?.status === 200) {
+      return;
+    }
+  };
+
   const todoList = (response?.data?.data ?? []).map((todoResponse): Todo => {
     return {
       id: todoResponse.id,
@@ -57,6 +67,7 @@ const Page = async (): Promise<ReactElement> => {
       todoList={todoList}
       onCreateTodo={handleCreateTodo}
       onUpdateTodo={handelUpdateTodo}
+      onDeleteTodo={handleDeleteTodo}
     ></TodoListContainer>
   );
 };
