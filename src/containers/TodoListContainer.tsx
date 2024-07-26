@@ -135,7 +135,7 @@ export const TodoListContainer = ({
 
 const StyledTodoListContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 16px);
+  height: calc(100vh - 36px);
   display: grid;
   grid-template-rows: 1fr 64px;
   overflow-x: hidden;
