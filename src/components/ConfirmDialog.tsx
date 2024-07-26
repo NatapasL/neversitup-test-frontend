@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import styled from 'styled-components';
 import { ButtonType } from '../constants';
-import { Body1 } from '../styles/text';
+import { Body2 } from '../styles/text';
 import { Button } from './Button';
 import { Modal } from './Modal';
 
@@ -19,9 +19,14 @@ export const ConfirmDialog = ({
   onSubmit,
 }: ConfirmDialogProps): ReactElement => {
   return (
-    <Modal title={``} open={open} onClose={onCancel} showCloseButton={false}>
+    <Modal
+      title={`Confirm delete`}
+      open={open}
+      onClose={onCancel}
+      showCloseButton={false}
+    >
       <StyledConfirmDialog>
-        <Body1 className="description-container">{description}</Body1>
+        <Body2 className="description-container">{description}</Body2>
 
         <div className="button-container">
           <Button type={ButtonType.SECONDARY} onClick={onCancel}>
@@ -37,7 +42,7 @@ export const ConfirmDialog = ({
 const StyledConfirmDialog = styled.div`
   .description-container {
     display: block;
-    margin-bottom: 16px;
+    margin: 8px 0 24px;
     word-break: break-all;
     white-space: break-spaces;
     max-height: 60px;
@@ -46,7 +51,7 @@ const StyledConfirmDialog = styled.div`
 
   .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     column-gap: 8px;
   }
 `;
