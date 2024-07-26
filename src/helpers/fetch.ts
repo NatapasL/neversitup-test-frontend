@@ -12,10 +12,12 @@ const parseResponse = async (response: Response) => {
 };
 
 export const getData = async <ResponseDataType>(
-  url: string,
+  baseUrl: string,
+  path: string,
   options?: RequestInit
 ): Promise<CustomResponse<ResponseDataType>> => {
   const token = getToken();
+  const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `GET`,
     headers: {
@@ -32,10 +34,12 @@ export const getData = async <ResponseDataType>(
 };
 
 export const postData = async <ResponseDataType>(
-  url: string,
+  baseUrl: string,
+  path: string,
   body?: BodyInit
 ): Promise<CustomResponse<ResponseDataType>> => {
   const token = getToken();
+  const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `POST`,
     headers: {
@@ -53,10 +57,12 @@ export const postData = async <ResponseDataType>(
 };
 
 export const patchData = async <ResponseDataType>(
-  url: string,
+  baseUrl: string,
+  path: string,
   body: BodyInit
 ): Promise<CustomResponse<ResponseDataType>> => {
   const token = getToken();
+  const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `PATCH`,
     headers: {
@@ -74,10 +80,12 @@ export const patchData = async <ResponseDataType>(
 };
 
 export const deleteData = async <ResponseDataType>(
-  url: string,
+  baseUrl: string,
+  path: string,
   body?: BodyInit
 ): Promise<CustomResponse<ResponseDataType>> => {
   const token = getToken();
+  const url = `${baseUrl}${path}`;
   const response = await fetch(url, {
     method: `DELETE`,
     headers: {
