@@ -1,6 +1,6 @@
-import { TodoResponse } from './TodoResponse';
+import { RawTodoResponse, TodoResponse } from './TodoResponse';
 
-export interface GetAllTodoResponse {
+export interface GetAllTodoResponse<T extends TodoResponse | RawTodoResponse> {
   isSuccess: boolean;
-  data: TodoResponse[];
+  data: T[];
 }
