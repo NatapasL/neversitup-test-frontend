@@ -56,7 +56,7 @@ export const TodoForm = ({
   return (
     <StyledTodoForm>
       <FormProvider {...form}>
-        <form onSubmit={preventDefault} noValidate>
+        <form className="form" onSubmit={preventDefault} noValidate>
           <Input
             label={FormConfig.Title.LABEL}
             name={FormConfig.Title.NAME}
@@ -92,12 +92,16 @@ export const TodoForm = ({
 };
 
 const StyledTodoForm = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 16px;
+  }
 
   .button-container {
     display: flex;
     column-gap: 8px;
+    justify-content: flex-end;
   }
 `;
