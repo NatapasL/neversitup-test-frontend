@@ -1,5 +1,5 @@
-import { ReactElement, ReactNode } from "react";
-import styled from "styled-components";
+import { ReactElement, ReactNode } from 'react';
+import styled from 'styled-components';
 
 export interface MainLayoutProps {
   children: ReactNode | ReactNode[];
