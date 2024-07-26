@@ -52,6 +52,7 @@ const StyledTodoCard = styled.div`
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 
   .card-header {
     display: flex;
