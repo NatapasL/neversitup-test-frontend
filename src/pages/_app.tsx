@@ -1,12 +1,7 @@
-import { AppProps } from "next/app";
-import { MainLayout } from "../layouts";
+import { AppProps } from 'next/app';
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
-  return (
-    <MainLayout>
-      <Component {...pageProps} />
-    </MainLayout>
-  );
+  return <Component {...pageProps} />;
 };
 
 export default CustomApp;
