@@ -9,6 +9,7 @@ import { InputContainer } from './InputContainer';
 
 const REQUIRED_ERROR_MESSAGE = 'Please complete this field';
 const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters';
+const PATTERN_ERROR_MESSAGE = `Can use only :pattern:`;
 
 export interface InputProps {
   name: string;
@@ -17,6 +18,7 @@ export interface InputProps {
   value?: string;
   maxLength: number;
   inputType?: InputType;
+  pattern?: RegExp;
 }
 
 export const Input = ({
@@ -26,6 +28,7 @@ export const Input = ({
   value,
   maxLength,
   inputType = InputType.TEXT,
+  pattern,
 }: InputProps): ReactElement => {
   const {
     register,
@@ -39,6 +42,12 @@ export const Input = ({
   const maxLengthErrorMessage = useMemo(() => {
     return MAX_LENGTH_ERROR_MESSAGE.replace(/:maxLength:/, `${maxLength}`);
   }, [maxLength]);
+
+  const patternErrorMessage = useMemo(() => {
+    return pattern
+      ? PATTERN_ERROR_MESSAGE.replace(/:pattern:/, `${pattern}`)
+      : ``;
+  }, [pattern]);
 
   return (
     <InputContainer label={label} errorMessage={errorMessage}>
@@ -55,6 +64,12 @@ export const Input = ({
             message: maxLengthErrorMessage,
           },
           value: value ?? ``,
+          pattern: pattern
+            ? {
+                value: pattern,
+                message: patternErrorMessage,
+              }
+            : undefined,
         })}
       />
     </InputContainer>

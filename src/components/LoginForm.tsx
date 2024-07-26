@@ -14,6 +14,7 @@ const FormConfig = {
     LABEL: `Username`,
     REQUIRED: true,
     MAX_LENGTH: 16,
+    PATTERN: /[A-Za-z0-9]/,
   },
   Password: {
     NAME: `password`,
@@ -51,6 +52,7 @@ export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
             label={FormConfig.Username.LABEL}
             maxLength={FormConfig.Username.MAX_LENGTH}
             required={FormConfig.Username.REQUIRED}
+            pattern={FormConfig.Username.PATTERN}
           />
 
           <Input
