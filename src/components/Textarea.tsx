@@ -15,6 +15,7 @@ export interface TextareaProps {
   required?: boolean;
   value?: string;
   maxLength: number;
+  height?: string;
 }
 
 export const Textarea = ({
@@ -23,6 +24,7 @@ export const Textarea = ({
   required,
   value,
   maxLength,
+  height,
 }: TextareaProps): ReactElement => {
   const {
     register,
@@ -40,6 +42,7 @@ export const Textarea = ({
   return (
     <InputContainer label={label} errorMessage={errorMessage}>
       <StyledTextarea
+        height={height}
         maxLength={maxLength}
         {...register(name, {
           required: {
@@ -57,11 +60,16 @@ export const Textarea = ({
   );
 };
 
-const StyledTextarea = styled.textarea`
+interface StyledTextareaProps {
+  height: string | undefined;
+}
+
+const StyledTextarea = styled.textarea<StyledTextareaProps>`
   width: 100%;
   height: 72px;
   border-radius: 4px;
   border: 1px solid ${SECONDARY};
   padding: 4px 8px;
   resize: none;
+  ${(props): string => (props.height ? `height: ${props.height};` : ``)}
 `;
