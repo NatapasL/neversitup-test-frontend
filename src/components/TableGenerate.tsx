@@ -23,10 +23,6 @@ export const TableGenerate = (): ReactElement => {
   const [columns, setColumns] = useState<ColumnDefinition[]>([]);
   const [formatData, setFormatData] = useState<FormatData[]>([]);
 
-  const preventDefault = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-  };
-
   const handleMakeTable = useCallback((): void => {
     form.clearErrors();
     const input = form.getValues()[FormConfig.NAME];
@@ -44,6 +40,10 @@ export const TableGenerate = (): ReactElement => {
     setColumns(sourceTable.columns);
     setFormatData(formatDataList);
   }, [form]);
+
+  const preventDefault = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+  };
 
   return (
     <div>
