@@ -28,7 +28,7 @@ component ที่ใช้เป็น layout
 ส่วนที่เกี่ยวกับการทำ schema ของหน้า html เช่น meta, jsonld  
 
 - **src/services**  
-function สำหรับการ call api จาก service ภายนอก  
+function สำหรับการ call api, parse data ให้ตรงกับ format ของ api ที่จะ call และ parse response จากภายนอกให้อยู่ใน format ที่ใช้ภายใน app  
 
 - **src/styles**  
 shared style, global css และ constant ของ style ต่างๆ เช่น color  
