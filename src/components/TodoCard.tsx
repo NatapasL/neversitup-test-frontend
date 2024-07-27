@@ -20,6 +20,11 @@ export const TodoCard = ({
   onClick,
   onClickDelete,
 }: TodoCardProps): ReactElement => {
+  const updatedDate = useMemo(
+    () => dayjs(new Date(todo.updatedAt)).format(`DD-MMM-YYYY`),
+    [todo.updatedAt]
+  );
+
   const handleClick = (): void => {
     onClick?.(todo);
   };
@@ -30,11 +35,6 @@ export const TodoCard = ({
 
     onClickDelete?.(todo);
   };
-
-  const updatedDate = useMemo(
-    () => dayjs(new Date(todo.updatedAt)).format(`DD-MMM-YYYY`),
-    [todo.updatedAt]
-  );
 
   return (
     <StyledTodoCard onClick={handleClick}>
