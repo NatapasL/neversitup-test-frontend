@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { MODAL_ROOT_ID, ZIndex } from '../constants';
+import { MODAL_ROOT_ID } from '../constants';
 import { WHITE } from '../styles/colors';
 import { Title3 } from '../styles/text';
+import { ZIndex } from '../styles/z-index';
 
 export interface ModalProps {
   open: boolean;
