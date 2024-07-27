@@ -10,7 +10,7 @@ export interface InputContainer {
   children: ReactNode | ReactNode[];
 }
 
-export const InputContainer = ({
+export const InputWrapper = ({
   label,
   errorMessage,
   children,

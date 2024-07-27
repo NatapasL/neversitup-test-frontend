@@ -4,7 +4,7 @@ import { ReactElement, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { SECONDARY } from '../styles/colors';
-import { InputContainer } from './InputContainer';
+import { InputWrapper } from './InputWrapper';
 
 const REQUIRED_ERROR_MESSAGE = 'Please complete this field.';
 const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters.';
@@ -40,7 +40,7 @@ export const Textarea = ({
   }, [maxLength]);
 
   return (
-    <InputContainer label={label} errorMessage={errorMessage}>
+    <InputWrapper label={label} errorMessage={errorMessage}>
       <StyledTextarea
         height={height}
         maxLength={maxLength}
@@ -56,7 +56,7 @@ export const Textarea = ({
           value: value ?? '',
         })}
       />
-    </InputContainer>
+    </InputWrapper>
   );
 };
 
