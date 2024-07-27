@@ -1202,6 +1202,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.12":
+  version: 1.11.12
+  resolution: "dayjs@npm:1.11.12"
+  checksum: 40a4f67c2df3af125ae0ddec68d3a6d806d3009a7414bf45479aaf82f1dd82f3e139e6642e72391abccc37488897830c56afcabb4c819014130d283644df8128
+  languageName: node
+  linkType: hard
+
 "debug@npm:^3.2.7":
   version: 3.2.7
   resolution: "debug@npm:3.2.7"
@@ -2694,6 +2701,7 @@ __metadata:
     "@types/react-dom": ^18
     "@types/styled-components": ^5.1.34
     "@typescript-eslint/eslint-plugin": ^7.17.0
+    dayjs: ^1.11.12
     eslint: ^8
     eslint-config-next: 14.2.5
     next: 14.2.5
