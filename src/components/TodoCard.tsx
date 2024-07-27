@@ -52,6 +52,7 @@ export const TodoCard = ({
 
 const StyledTodoCard = styled.div`
   width: 500px;
+  max-width: calc(100vw - 48px);
   box-shadow: 0 8px 24px rgba(37, 42, 51, 0.08);
   border-radius: 4px;
   padding: 8px 16px;

@@ -67,7 +67,7 @@ const StyledModal = styled.div`
 
   .modal-container {
     width: 480px;
-    max-width: 100vw;
+    max-width: calc(100vw - 16px);
     overflow: hidden;
     background-color: ${WHITE};
     padding: 16px 16px;
