@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactElement } from 'react';
 import styled from 'styled-components';
 import { ButtonType } from '../constants';

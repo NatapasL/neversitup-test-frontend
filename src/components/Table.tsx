@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactElement } from 'react';
 import type { ColumnDefinition, FormatData } from '../types';
 

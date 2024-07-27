@@ -1,3 +1,5 @@
+'use client';
+
 import { type FormEvent, type ReactElement, useCallback } from 'react';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
