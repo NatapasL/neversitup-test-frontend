@@ -1,5 +1,4 @@
 import { clearToken, setToken } from '../authentication/token';
-import { API_BASE_URL } from '../constants/api-url';
 import { postData } from '../helpers';
 import {
   CustomResponse,
@@ -13,7 +12,6 @@ export const login = async (
 ): Promise<CustomResponse<LoginResponse> | undefined> => {
   try {
     const response = await postData<RawLoginResponse>({
-      baseUrl: API_BASE_URL,
       path: `/auth/login`,
       body: JSON.stringify(formValues),
     });

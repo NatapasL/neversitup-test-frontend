@@ -7,6 +7,8 @@ import {
   PostDataRequest,
 } from '../types';
 
+const baseUrl = process.env.API_BASE_URL ?? ``;
+
 export const parseResponse = async (response: Response) => {
   return response.text().then(function (text) {
     return text ? JSON.parse(text) : {};
@@ -14,7 +16,6 @@ export const parseResponse = async (response: Response) => {
 };
 
 export const getData = async <ResponseDataType>({
-  baseUrl,
   path,
   token,
   options,
@@ -39,7 +40,6 @@ export const getData = async <ResponseDataType>({
 };
 
 export const postData = async <ResponseDataType>({
-  baseUrl,
   path,
   token,
   body,
@@ -67,7 +67,6 @@ export const postData = async <ResponseDataType>({
 };
 
 export const patchData = async <ResponseDataType>({
-  baseUrl,
   path,
   token,
   body,
@@ -95,7 +94,6 @@ export const patchData = async <ResponseDataType>({
 };
 
 export const deleteData = async <ResponseDataType>({
-  baseUrl,
   path,
   token,
   body,

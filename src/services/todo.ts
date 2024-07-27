@@ -1,5 +1,4 @@
 import { getToken } from '../authentication/token';
-import { API_BASE_URL } from '../constants/api-url';
 import { deleteData, getData, patchData, postData } from '../helpers';
 import {
   CreateTodoResponse,
@@ -36,7 +35,6 @@ export const getAllTodo = async (): Promise<
   try {
     const token = getToken();
     const response = await getData<GetAllTodoResponse<RawTodoResponse>>({
-      baseUrl: API_BASE_URL,
       path: `/todo`,
       token: token ?? ``,
     });
@@ -61,7 +59,6 @@ export const createTodo = async (
   try {
     const token = getToken();
     const response = await postData<CreateTodoResponse<RawTodoResponse>>({
-      baseUrl: API_BASE_URL,
       path: `/todo`,
       body: JSON.stringify(body),
       token: token ?? ``,
@@ -89,7 +86,6 @@ export const updateTodo = async <
   try {
     const token = getToken();
     return await patchData({
-      baseUrl: API_BASE_URL,
       path: `/todo/${id}`,
       body: JSON.stringify(body),
       token: token ?? ``,
@@ -105,7 +101,6 @@ export const deleteTodo = async (
   try {
     const token = getToken();
     return await deleteData({
-      baseUrl: API_BASE_URL,
       path: `/todo/${id}`,
       token: token ?? ``,
     });
