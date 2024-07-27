@@ -2,7 +2,8 @@
 
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MouseEventHandler, ReactElement } from 'react';
+import dayjs from 'dayjs';
+import { MouseEventHandler, ReactElement, useMemo } from 'react';
 import styled from 'styled-components';
 import { SECONDARY } from '../styles/colors';
 import { Body2, Small2, Title3 } from '../styles/text';
@@ -30,6 +31,11 @@ export const TodoCard = ({
     onClickDelete?.(todo);
   };
 
+  const updatedDate = useMemo(
+    () => dayjs(new Date(todo.updatedAt)).format(`DD-MMM-YYYY`),
+    [todo.updatedAt]
+  );
+
   return (
     <StyledTodoCard onClick={handleClick}>
       <div className="card-header">
@@ -39,7 +45,7 @@ export const TodoCard = ({
         </button>
       </div>
       <Body2 className="description-container">{todo.description}</Body2>
-      <Small2 className="date-container">{todo.updatedAt}</Small2>
+      <Small2 className="date-container">{updatedDate}</Small2>
     </StyledTodoCard>
   );
 };
