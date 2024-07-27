@@ -4,12 +4,11 @@ import { TableContainer } from '../../containers';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
-    title: 'Todo Generator',
+    title: 'Table Generator',
   };
 };
 
 const TablePage = (): ReactElement => {
-  console.log(process.env.NEXT_PUBLIC_EXAMPLE_TABLE);
   return <TableContainer />;
 };
 
