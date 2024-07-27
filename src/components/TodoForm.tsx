@@ -1,5 +1,5 @@
 import { FormEvent, ReactElement, useCallback } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { ButtonType } from '../constants';
 import { Todo, TodoFormValues } from '../types';
@@ -46,12 +46,17 @@ export const TodoForm = ({
     e.preventDefault();
   };
 
-  const handleSubmit = form.handleSubmit((formValues) => {
-    onSubmit({
-      title: formValues[FormConfig.Title.NAME],
-      description: formValues[FormConfig.Description.NAME],
-    });
-  });
+  const handleSubmit = useCallback(
+    (formValues: FieldValues): void => {
+      onSubmit({
+        title: formValues[FormConfig.Title.NAME],
+        description: formValues[FormConfig.Description.NAME],
+      });
+    },
+    [FormConfig, onSubmit]
+  );
+
+  const formHandleSubmit = form.handleSubmit(handleSubmit);
 
   return (
     <StyledTodoForm>
@@ -81,7 +86,7 @@ export const TodoForm = ({
               Cancel
             </Button>
 
-            <Button onClick={handleSubmit} width="84px">
+            <Button onClick={formHandleSubmit} width="84px">
               {submitButtonText}
             </Button>
           </div>
