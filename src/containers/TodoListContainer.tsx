@@ -7,6 +7,7 @@ import { ReactElement, useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ConfirmDialog, TodoFormModal } from '../components';
 import { TodoList } from '../components/TodoList';
+import { useSingleProcess } from '../hooks';
 import type { Todo, TodoFormValues } from '../types';
 
 export interface TodoListContainerProps {
@@ -25,9 +26,10 @@ export const TodoListContainer = ({
   onUpdateTodo,
   onDeleteTodo,
 }: TodoListContainerProps): ReactElement => {
+  const { process, isProcessing } = useSingleProcess();
+
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedTodo, setSelectedTodo] = useState<Todo | undefined>();
-  const [processing, setProcessing] = useState<boolean>(false);
   const [confirmDialogOpen, setConfirmDialogOpen] = useState<boolean>(false);
 
   const router = useRouter();
@@ -47,53 +49,45 @@ export const TodoListContainer = ({
   }, []);
 
   const handleSubmitTodoForm = useCallback(
-    async (formValues: TodoFormValues): Promise<void> => {
-      if (processing) return;
+    (formValues: TodoFormValues): void => {
+      process(async () => {
+        if (selectedTodo?.id) {
+          await onUpdateTodo?.(selectedTodo.id, formValues);
+        } else {
+          await onCreateTodo?.(formValues);
+        }
 
-      setProcessing(true);
-      if (selectedTodo?.id) {
-        await onUpdateTodo?.(selectedTodo.id, formValues);
-      } else {
-        await onCreateTodo?.(formValues);
-      }
-      setProcessing(false);
-
-      setSelectedTodo(undefined);
-      setModalOpen(false);
-      router.refresh();
+        setSelectedTodo(undefined);
+        setModalOpen(false);
+        router.refresh();
+      });
     },
-    [selectedTodo?.id, onUpdateTodo, onCreateTodo, router, processing]
+    [selectedTodo?.id, onUpdateTodo, onCreateTodo, router, process]
   );
 
-  const handleDeleteTodo = useCallback(
-    async (todo: Todo): Promise<void> => {
-      if (processing) return;
-
-      setProcessing(true);
-      setConfirmDialogOpen(true);
-      setSelectedTodo(todo);
-    },
-    [processing]
-  );
+  const handleDeleteTodo = useCallback((todo: Todo): void => {
+    setConfirmDialogOpen(true);
+    setSelectedTodo(todo);
+  }, []);
 
   const confirmDialogDescription = useMemo(
     () => `Want delete ${selectedTodo?.title}`,
     [selectedTodo?.title]
   );
 
-  const handelConfirmDeleteTodo = useCallback(async (): Promise<void> => {
-    if (selectedTodo?.id) {
-      await onDeleteTodo(selectedTodo.id);
-    }
-    setProcessing(false);
+  const handelConfirmDeleteTodo = useCallback((): void => {
+    process(async () => {
+      if (selectedTodo?.id) {
+        await onDeleteTodo(selectedTodo.id);
+      }
 
-    setSelectedTodo(undefined);
-    setConfirmDialogOpen(false);
-    router.refresh();
-  }, [onDeleteTodo, router, selectedTodo?.id]);
+      setSelectedTodo(undefined);
+      setConfirmDialogOpen(false);
+      router.refresh();
+    });
+  }, [onDeleteTodo, router, selectedTodo?.id, process]);
 
   const handleCancelDeleteTodo = useCallback((): void => {
-    setProcessing(false);
     setConfirmDialogOpen(false);
   }, []);
 
@@ -121,7 +115,7 @@ export const TodoListContainer = ({
         onClose={handleCloseModal}
         todo={selectedTodo}
         onSubmit={handleSubmitTodoForm}
-        disableSubmit={processing}
+        disableSubmit={isProcessing}
       ></TodoFormModal>
 
       <ConfirmDialog

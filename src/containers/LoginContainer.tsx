@@ -1,7 +1,8 @@
 'use client';
 
-import { type ReactElement, useState } from 'react';
+import { type ReactElement, useCallback, useState } from 'react';
 import { LoginForm, ValidationErrorMessage } from '../components';
+import { useSingleProcess } from '../hooks/useSingleProcess';
 import type { LoginFormValues } from '../types';
 
 const LOGIN_FAILURE_MESSAGE = `Username or password incorrect.`;
@@ -12,23 +13,24 @@ export interface LoginContainerProps {
 export const LoginContainer = ({
   onSubmit,
 }: LoginContainerProps): ReactElement => {
-  const [processing, setProcessing] = useState<boolean>(false);
+  const { process, isProcessing } = useSingleProcess();
+
   const [errorMessage, setErrorMessage] = useState<string>();
 
-  const handleSubmit = async (formValues: LoginFormValues): Promise<void> => {
-    if (processing) return;
+  const handleSubmit = useCallback(
+    (formValues: LoginFormValues): Promise<void> =>
+      process(async () => {
+        const result = await onSubmit(formValues);
 
-    setProcessing(true);
-    const result = await onSubmit(formValues);
-    setProcessing(false);
-
-    setErrorMessage(result ? LOGIN_FAILURE_MESSAGE : undefined);
-  };
+        setErrorMessage(result ? LOGIN_FAILURE_MESSAGE : undefined);
+      }),
+    [onSubmit, process]
+  );
 
   return (
     <>
       {!!errorMessage && <ValidationErrorMessage text={errorMessage} />}
-      <LoginForm onSubmit={handleSubmit} disableSubmit={processing} />
+      <LoginForm onSubmit={handleSubmit} disableSubmit={isProcessing} />
     </>
   );
 };
