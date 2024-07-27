@@ -37,6 +37,11 @@ export const TodoForm = ({
 }: TodoFormProps): ReactElement => {
   const form = useForm();
 
+  const handleCancel = useCallback((): void => {
+    form.reset();
+    onCancel();
+  }, [form, onCancel]);
+
   const preventDefault = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
   };
@@ -47,11 +52,6 @@ export const TodoForm = ({
       description: formValues[FormConfig.Description.NAME],
     });
   });
-
-  const handleCancel = useCallback((): void => {
-    form.reset();
-    onCancel();
-  }, [form, onCancel]);
 
   return (
     <StyledTodoForm>

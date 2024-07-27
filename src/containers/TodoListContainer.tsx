@@ -36,10 +36,10 @@ export const TodoListContainer = ({
     setModalOpen(true);
   }, []);
 
-  const handleClickTodoCard = (todo: Todo): void => {
+  const handleClickTodoCard = useCallback((todo: Todo): void => {
     setSelectedTodo(todo);
     setModalOpen(true);
-  };
+  }, []);
 
   const handleCloseModal = useCallback((): void => {
     setSelectedTodo(undefined);
