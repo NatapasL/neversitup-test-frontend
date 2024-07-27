@@ -1,4 +1,3 @@
-import { clearToken, setToken } from '../authentication/token';
 import { postData } from '../helpers';
 import {
   CustomResponse,
@@ -7,7 +6,7 @@ import {
   RawLoginResponse,
 } from '../types';
 
-export const login = async (
+export const postLogin = async (
   formValues: LoginBody
 ): Promise<CustomResponse<LoginResponse> | undefined> => {
   try {
@@ -15,12 +14,6 @@ export const login = async (
       path: `/auth/login`,
       body: JSON.stringify(formValues),
     });
-
-    if (response.data?.access_token) {
-      setToken(response.data.access_token);
-    } else {
-      clearToken();
-    }
 
     return {
       ...response,
@@ -30,7 +23,6 @@ export const login = async (
       },
     };
   } catch (error) {
-    clearToken();
     return undefined;
   }
 };

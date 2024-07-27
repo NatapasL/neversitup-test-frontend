@@ -1,4 +1,4 @@
-import { handleUnauthorized } from '../authentication/handle-unauthorized';
+import { handleUnauthorized } from '../authentication';
 import {
   CustomResponse,
   DeleteDataRequest,

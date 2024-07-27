@@ -1,15 +1,15 @@
 import { redirect } from 'next/navigation';
 import { ReactElement } from 'react';
+import { login } from '../../authentication';
 import { LoginContainer } from '../../containers';
-import { login } from '../../services';
 import { LoginFormValues } from '../../types';
 
 const LoginPage = (): ReactElement => {
   const handleLogin = async (formValues: LoginFormValues): Promise<boolean> => {
     'use server';
-    const response = await login(formValues);
+    const loginResult = await login(formValues);
 
-    if (response?.status === 201) {
+    if (loginResult) {
       redirect(`/`);
     }
 

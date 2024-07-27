@@ -1,4 +1,4 @@
-import { getToken } from '../authentication/token';
+import { getToken } from '../authentication';
 import { deleteData, getData, patchData, postData } from '../helpers';
 import {
   CreateTodoResponse,

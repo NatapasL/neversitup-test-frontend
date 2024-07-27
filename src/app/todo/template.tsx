@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
-import { AuthGate } from '../../authentication/AuthGate';
+import { AuthGate } from '../../authentication';
 
 export default function Template({
   children,
