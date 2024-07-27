@@ -1,10 +1,9 @@
 import { ReactElement } from 'react';
-import { AuthGate } from '../authentication/AuthGate';
-import { TodoListContainer } from '../containers';
-import { createTodo, deleteTodo, getAllTodo, updateTodo } from '../services';
-import { Todo, TodoFormValues } from '../types';
+import { TodoListContainer } from '../../containers';
+import { createTodo, deleteTodo, getAllTodo, updateTodo } from '../../services';
+import { Todo, TodoFormValues } from '../../types';
 
-const IndexPage = async (): Promise<ReactElement> => {
+const TodoPage = async (): Promise<ReactElement> => {
   const response = await getAllTodo();
 
   const handleCreateTodo = async (
@@ -40,15 +39,13 @@ const IndexPage = async (): Promise<ReactElement> => {
   });
 
   return (
-    <AuthGate>
-      <TodoListContainer
-        todoList={todoList}
-        onCreateTodo={handleCreateTodo}
-        onUpdateTodo={handelUpdateTodo}
-        onDeleteTodo={handleDeleteTodo}
-      ></TodoListContainer>
-    </AuthGate>
+    <TodoListContainer
+      todoList={todoList}
+      onCreateTodo={handleCreateTodo}
+      onUpdateTodo={handelUpdateTodo}
+      onDeleteTodo={handleDeleteTodo}
+    ></TodoListContainer>
   );
 };
 
-export default IndexPage;
+export default TodoPage;
