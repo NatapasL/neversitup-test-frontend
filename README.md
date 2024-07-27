@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project structure
 
-## Getting Started
+- **src/app**  
+app router ของ Nextjs โดยจะทำ logic ของฝั่ง server side, การทำงานกับ api เพื่อส่งข้อมูลต่อไปให้ component  
 
-First, run the development server:
+- **src/authentication**  
+รวม logic ของการ authentication และ logic authorization ต่างๆ ในกรณที่ต้องมีการเช็ค permission ด้วย  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **src/constants**  
+shared constant, enum  
+
+- **src/components**  
+ไว้ใส่ component โดยจะพยายามไม่มี nested folder หรือถ้าจำเป็นต้องมีจริงๆ จะ nested แค่ขั้นเดียว  
+
+- **src/containers**  
+เหมือนเป็นส่วนแสดงผลของหน้า page และถ้ามี logic ที่ติดต่อกับ server side component จะถูกทำที่นี่  
+
+- **src/helpers**  
+helper function และ utility function ต่างๆ  
+
+- **src/hooks**  
+ไว้ใส่ custom hook  
+
+- **src/layouts**  
+component ที่ใช้เป็น layout  
+
+- **src/schema**  
+ส่วนที่เกี่ยวกับการทำ schema ของหน้า html เช่น meta, jsonld  
+
+- **src/services**  
+function สำหรับการ call api จาก service ภายนอก  
+
+- **src/styles**  
+shared style, global css และ constant ของ style ต่างๆ เช่น color  
+
+- **src/types**  
+shared type โดยจะมี folder ย่อย  
+  - common - type ที่มีการใช้งานร่วมกันต่างๆ ไม่ได้เจาะจงเป็นพิเศษ  
+  - component - type ที่ถูกใช้งานกับ component และต้องการ share ให้ component อื่นเอาไปใช้งานด้วย  
+  - fetch - type ที่ใช้งานกับ function fetch  
+  - service - request body และ response ที่ใช้กับ service  
+
+# Component Convention
+
+```tsx
+export interface ExampleProps {} // <-- props type และ constant ต่างๆ จะอยู่ข้างบน component
+
+export const Example = (props: ExampleProps): ReactElement => {
+  // hook ต่างๆ จะอยู่ข้างบน
+  const [a, setA] = useState<string>('a') 
+
+  useEffect(() => {}, [])
+
+  // function และ variable ทั่วๆ ไปจะอยู่ต่อจาก hook
+  const b = `${a}+b`
+  const c = (): string => { setA(`c`) }
+
+  return <StyledExample>{b}</StyledExample>
+}
+
+interface StyledExampleProp {}
+
+const StyledExample = styled.dev<StyledExampleProp>`` // <-- styled จะอยู่ข้างล่าง component
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
