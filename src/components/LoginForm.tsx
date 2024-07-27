@@ -47,7 +47,7 @@ export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
       password: formValues[FormConfig.Password.NAME],
     });
 
-    setErrorMessage(result ? undefined : LOGIN_FAILURE_MESSAGE);
+    setErrorMessage(result ? LOGIN_FAILURE_MESSAGE : undefined);
   });
 
   return (
