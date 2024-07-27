@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { SECONDARY } from '../styles/colors';
 import { InputContainer } from './InputContainer';
 
-const REQUIRED_ERROR_MESSAGE = 'Please complete this field';
-const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters';
+const REQUIRED_ERROR_MESSAGE = 'Please complete this field.';
+const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters.';
 
 export interface TextareaProps {
   name: string;

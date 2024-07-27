@@ -7,9 +7,9 @@ import { InputType } from '../constants';
 import { SECONDARY } from '../styles/colors';
 import { InputContainer } from './InputContainer';
 
-const REQUIRED_ERROR_MESSAGE = 'Please complete this field';
-const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters';
-const PATTERN_ERROR_MESSAGE = `Can use only :pattern:`;
+const REQUIRED_ERROR_MESSAGE = 'Please complete this field.';
+const MAX_LENGTH_ERROR_MESSAGE = 'Max :maxLength: characters.';
+const PATTERN_ERROR_MESSAGE = `Can use only :pattern:.`;
 
 export interface InputProps {
   name: string;

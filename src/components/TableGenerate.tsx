@@ -14,7 +14,7 @@ const FormConfig = {
   MAX_LENGTH: 4000,
 } as const;
 
-const JSON_FORMAT_ERROR_MESSAGE = `Cant parse to table`;
+const JSON_FORMAT_ERROR_MESSAGE = `Cant parse to table.`;
 
 const sampleTableData = process.env.NEXT_PUBLIC_EXAMPLE_TABLE ?? ``;
 
