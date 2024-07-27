@@ -29,6 +29,7 @@ export interface TodoFormProps {
   submitButtonText: string;
   onSubmit: (formValues: TodoFormValues) => void | Promise<void>;
   onCancel: () => void | Promise<void>;
+  disableSubmit: boolean;
 }
 
 export const TodoForm = ({
@@ -36,6 +37,7 @@ export const TodoForm = ({
   onSubmit,
   submitButtonText,
   onCancel,
+  disableSubmit,
 }: TodoFormProps): ReactElement => {
   const form = useForm();
 
@@ -88,7 +90,11 @@ export const TodoForm = ({
               Cancel
             </Button>
 
-            <Button onClick={formHandleSubmit} width="84px">
+            <Button
+              onClick={formHandleSubmit}
+              width="84px"
+              disabled={disableSubmit}
+            >
               {submitButtonText}
             </Button>
           </div>

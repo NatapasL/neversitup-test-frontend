@@ -22,6 +22,7 @@ export interface ButtonProps {
   type?: ButtonType;
   onClick?: () => void | Promise<void>;
   width?: string;
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -29,6 +30,7 @@ export const Button = ({
   onClick,
   type = ButtonType.PRIMARY,
   width,
+  disabled = false,
 }: ButtonProps): ReactElement => {
   const handleClick: MouseEventHandler<HTMLButtonElement> = (e): void => {
     e.preventDefault();
@@ -36,7 +38,12 @@ export const Button = ({
   };
 
   return (
-    <StyleButton buttonType={type} onClick={handleClick} width={width}>
+    <StyleButton
+      buttonType={type}
+      onClick={handleClick}
+      width={width}
+      disabled={disabled}
+    >
       <Small1>{children}</Small1>
     </StyleButton>
   );

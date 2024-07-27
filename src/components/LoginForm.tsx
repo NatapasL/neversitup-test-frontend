@@ -27,9 +27,13 @@ const FormConfig = {
 
 export interface LoginFormProps {
   onSubmit: (formValues: LoginFormValues) => void | Promise<void>;
+  disableSubmit: boolean;
 }
 
-export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
+export const LoginForm = ({
+  onSubmit,
+  disableSubmit,
+}: LoginFormProps): ReactElement => {
   const form = useForm();
 
   const preventDefault = (e: FormEvent<HTMLFormElement>): void => {
@@ -63,7 +67,9 @@ export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
             inputType={FormConfig.Password.TYPE}
           />
 
-          <Button onClick={handleSubmit}>Login</Button>
+          <Button onClick={handleSubmit} disabled={disableSubmit}>
+            Login
+          </Button>
         </form>
       </FormProvider>
     </StyledLoginForm>

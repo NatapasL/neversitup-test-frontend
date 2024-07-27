@@ -121,6 +121,7 @@ export const TodoListContainer = ({
         onClose={handleCloseModal}
         todo={selectedTodo}
         onSubmit={handleSubmitTodoForm}
+        disableSubmit={processing}
       ></TodoFormModal>
 
       <ConfirmDialog

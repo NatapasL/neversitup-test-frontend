@@ -28,7 +28,7 @@ export const LoginContainer = ({
   return (
     <>
       {!!errorMessage && <ValidationErrorMessage text={errorMessage} />}
-      <LoginForm onSubmit={handleSubmit} />
+      <LoginForm onSubmit={handleSubmit} disableSubmit={processing} />
     </>
   );
 };

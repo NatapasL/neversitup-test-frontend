@@ -21,6 +21,7 @@ export interface TodoFormModalProps {
   onSubmit: (formValues: TodoFormValues) => void | Promise<void>;
   onClose: () => void;
   todo?: Todo;
+  disableSubmit: boolean;
 }
 
 export const TodoFormModal = ({
@@ -28,6 +29,7 @@ export const TodoFormModal = ({
   onSubmit,
   onClose,
   todo,
+  disableSubmit,
 }: TodoFormModalProps): ReactElement => {
   const submitButtonText = useMemo(
     () => (todo?.id ? SubmitButtonText.EDIT : SubmitButtonText.CREATE),
@@ -47,6 +49,7 @@ export const TodoFormModal = ({
           onCancel={onClose}
           submitButtonText={submitButtonText}
           todo={todo}
+          disableSubmit={disableSubmit}
         ></TodoForm>
       </StyledTodoFormModal>
     </Modal>
