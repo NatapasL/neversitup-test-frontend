@@ -1,8 +1,15 @@
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { ReactElement } from 'react';
 import { login } from '../../authentication';
 import { LoginContainer } from '../../containers';
 import { LoginFormValues } from '../../types';
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return {
+    title: 'Login',
+  };
+};
 
 const LoginPage = (): ReactElement => {
   const handleLogin = async (formValues: LoginFormValues): Promise<boolean> => {

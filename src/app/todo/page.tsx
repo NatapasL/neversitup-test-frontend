@@ -1,7 +1,14 @@
+import { Metadata } from 'next';
 import { ReactElement } from 'react';
 import { TodoListContainer } from '../../containers';
 import { createTodo, deleteTodo, getAllTodo, updateTodo } from '../../services';
 import { Todo, TodoFormValues } from '../../types';
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return {
+    title: 'Todo List',
+  };
+};
 
 const TodoPage = async (): Promise<ReactElement> => {
   const response = await getAllTodo();
