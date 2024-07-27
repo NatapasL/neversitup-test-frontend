@@ -11,8 +11,6 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 const TodoPage = async (): Promise<ReactElement> => {
-  const response = await getAllTodo();
-
   const handleCreateTodo = async (
     formValues: TodoFormValues
   ): Promise<void> => {
@@ -36,6 +34,7 @@ const TodoPage = async (): Promise<ReactElement> => {
     await deleteTodo(id);
   };
 
+  const response = await getAllTodo();
   const todoList = (response?.data?.data ?? []).map((todoResponse): Todo => {
     return {
       id: todoResponse.id,
