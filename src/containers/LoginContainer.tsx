@@ -18,12 +18,11 @@ export const LoginContainer = ({
   const [errorMessage, setErrorMessage] = useState<string>();
 
   const handleSubmit = useCallback(
-    (formValues: LoginFormValues): Promise<void> =>
-      throttle(async () => {
-        const result = await onSubmit(formValues);
+    throttle(async (formValues: LoginFormValues): Promise<void> => {
+      const result = await onSubmit(formValues);
 
-        setErrorMessage(result ? LOGIN_FAILURE_MESSAGE : undefined);
-      }),
+      setErrorMessage(result ? LOGIN_FAILURE_MESSAGE : undefined);
+    }),
     [onSubmit, throttle]
   );
 

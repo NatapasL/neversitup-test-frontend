@@ -49,19 +49,17 @@ export const TodoListContainer = ({
   }, []);
 
   const handleSubmitTodoForm = useCallback(
-    (formValues: TodoFormValues): void => {
-      throttle(async () => {
-        if (selectedTodo?.id) {
-          await onUpdateTodo?.(selectedTodo.id, formValues);
-        } else {
-          await onCreateTodo?.(formValues);
-        }
+    throttle(async (formValues: TodoFormValues): Promise<void> => {
+      if (selectedTodo?.id) {
+        await onUpdateTodo?.(selectedTodo.id, formValues);
+      } else {
+        await onCreateTodo?.(formValues);
+      }
 
-        setSelectedTodo(undefined);
-        setModalOpen(false);
-        router.refresh();
-      });
-    },
+      setSelectedTodo(undefined);
+      setModalOpen(false);
+      router.refresh();
+    }),
     [selectedTodo?.id, onUpdateTodo, onCreateTodo, router, throttle]
   );
 
@@ -75,8 +73,8 @@ export const TodoListContainer = ({
     [selectedTodo?.title]
   );
 
-  const handelConfirmDeleteTodo = useCallback((): void => {
-    throttle(async () => {
+  const handelConfirmDeleteTodo = useCallback(
+    throttle(async (): Promise<void> => {
       if (selectedTodo?.id) {
         await onDeleteTodo(selectedTodo.id);
       }
@@ -84,8 +82,9 @@ export const TodoListContainer = ({
       setSelectedTodo(undefined);
       setConfirmDialogOpen(false);
       router.refresh();
-    });
-  }, [onDeleteTodo, router, selectedTodo?.id, throttle]);
+    }),
+    [onDeleteTodo, router, selectedTodo?.id, throttle]
+  );
 
   const handleCancelDeleteTodo = useCallback((): void => {
     setConfirmDialogOpen(false);
