@@ -2,7 +2,7 @@
 
 import { type ReactElement, useCallback, useState } from 'react';
 import { LoginForm, ValidationErrorMessage } from '../components';
-import { useSingleProcess } from '../hooks/useSingleProcess';
+import { useThrottle } from '../hooks/useThrottle';
 import type { LoginFormValues } from '../types';
 
 const LOGIN_FAILURE_MESSAGE = `Username or password incorrect.`;
@@ -13,18 +13,18 @@ export interface LoginContainerProps {
 export const LoginContainer = ({
   onSubmit,
 }: LoginContainerProps): ReactElement => {
-  const { process, isProcessing } = useSingleProcess();
+  const { throttle, isProcessing } = useThrottle();
 
   const [errorMessage, setErrorMessage] = useState<string>();
 
   const handleSubmit = useCallback(
     (formValues: LoginFormValues): Promise<void> =>
-      process(async () => {
+      throttle(async () => {
         const result = await onSubmit(formValues);
 
         setErrorMessage(result ? LOGIN_FAILURE_MESSAGE : undefined);
       }),
-    [onSubmit, process]
+    [onSubmit, throttle]
   );
 
   return (

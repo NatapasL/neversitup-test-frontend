@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-type ProcessFn = <R>(fn: () => Promise<R>) => Promise<R | undefined>;
+type ThrottleFn = <R>(fn: () => Promise<R>) => Promise<R | undefined>;
 
-export const useSingleProcess = (): {
-  process: ProcessFn;
+export const useThrottle = (): {
+  throttle: ThrottleFn;
   isProcessing: boolean;
 } => {
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-  const process = async <R>(fn: () => Promise<R>): Promise<R | undefined> => {
+  const throttle = async <R>(fn: () => Promise<R>): Promise<R | undefined> => {
     if (isProcessing) return;
 
     setIsProcessing(true);
@@ -18,5 +18,5 @@ export const useSingleProcess = (): {
     return result;
   };
 
-  return { process, isProcessing };
+  return { throttle, isProcessing };
 };

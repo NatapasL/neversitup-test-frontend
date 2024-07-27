@@ -1,1 +1,1 @@
-export * from './useSingleProcess';
+export * from './useThrottle';

@@ -7,7 +7,7 @@ import { ReactElement, useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ConfirmDialog, TodoFormModal } from '../components';
 import { TodoList } from '../components/TodoList';
-import { useSingleProcess } from '../hooks';
+import { useThrottle } from '../hooks';
 import type { Todo, TodoFormValues } from '../types';
 
 export interface TodoListContainerProps {
@@ -26,7 +26,7 @@ export const TodoListContainer = ({
   onUpdateTodo,
   onDeleteTodo,
 }: TodoListContainerProps): ReactElement => {
-  const { process, isProcessing } = useSingleProcess();
+  const { throttle, isProcessing } = useThrottle();
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedTodo, setSelectedTodo] = useState<Todo | undefined>();
@@ -50,7 +50,7 @@ export const TodoListContainer = ({
 
   const handleSubmitTodoForm = useCallback(
     (formValues: TodoFormValues): void => {
-      process(async () => {
+      throttle(async () => {
         if (selectedTodo?.id) {
           await onUpdateTodo?.(selectedTodo.id, formValues);
         } else {
@@ -62,7 +62,7 @@ export const TodoListContainer = ({
         router.refresh();
       });
     },
-    [selectedTodo?.id, onUpdateTodo, onCreateTodo, router, process]
+    [selectedTodo?.id, onUpdateTodo, onCreateTodo, router, throttle]
   );
 
   const handleDeleteTodo = useCallback((todo: Todo): void => {
@@ -76,7 +76,7 @@ export const TodoListContainer = ({
   );
 
   const handelConfirmDeleteTodo = useCallback((): void => {
-    process(async () => {
+    throttle(async () => {
       if (selectedTodo?.id) {
         await onDeleteTodo(selectedTodo.id);
       }
@@ -85,7 +85,7 @@ export const TodoListContainer = ({
       setConfirmDialogOpen(false);
       router.refresh();
     });
-  }, [onDeleteTodo, router, selectedTodo?.id, process]);
+  }, [onDeleteTodo, router, selectedTodo?.id, throttle]);
 
   const handleCancelDeleteTodo = useCallback((): void => {
     setConfirmDialogOpen(false);
