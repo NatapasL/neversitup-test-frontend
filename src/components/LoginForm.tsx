@@ -1,12 +1,13 @@
 'use client';
 
-import { FormEvent, ReactElement } from 'react';
+import { FormEvent, ReactElement, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { InputType } from '../constants';
 import { LoginFormValues } from '../types';
 import { Button } from './Button';
 import { Input } from './Input';
+import { ValidationErrorMessage } from './ValidationErrorMessage';
 
 const FormConfig = {
   Username: {
@@ -25,27 +26,35 @@ const FormConfig = {
   },
 } as const;
 
+const LOGIN_FAILURE_MESSAGE = `Username or password incorrect.`;
+
 export interface LoginFormProps {
-  onSubmit: (formValues: LoginFormValues) => void | Promise<void>;
+  onSubmit: (formValues: LoginFormValues) => boolean | Promise<boolean>;
 }
 
 export const LoginForm = ({ onSubmit }: LoginFormProps): ReactElement => {
   const form = useForm();
 
+  const [errorMessage, setErrorMessage] = useState<string>();
+
   const preventDefault = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
   };
 
-  const handleSubmit = form.handleSubmit((formValues) => {
-    onSubmit({
+  const handleSubmit = form.handleSubmit(async (formValues) => {
+    const result = await onSubmit({
       username: formValues[FormConfig.Username.NAME],
       password: formValues[FormConfig.Password.NAME],
     });
+
+    setErrorMessage(result ? undefined : LOGIN_FAILURE_MESSAGE);
   });
 
   return (
     <StyledLoginForm>
       <FormProvider {...form}>
+        {!!errorMessage && <ValidationErrorMessage text={errorMessage} />}
+
         <form className="form" onSubmit={preventDefault} noValidate>
           <Input
             name={FormConfig.Username.NAME}

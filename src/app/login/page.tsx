@@ -5,7 +5,7 @@ import { login } from '../../services';
 import { LoginFormValues } from '../../types';
 
 const LoginPage = (): ReactElement => {
-  const handleLogin = async (formValues: LoginFormValues): Promise<void> => {
+  const handleLogin = async (formValues: LoginFormValues): Promise<boolean> => {
     'use server';
     const response = await login(formValues);
 
@@ -13,7 +13,7 @@ const LoginPage = (): ReactElement => {
       redirect(`/`);
     }
 
-    alert(`Login fail`);
+    return false;
   };
 
   return <LoginContainer onSubmit={handleLogin} />;

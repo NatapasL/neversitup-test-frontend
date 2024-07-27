@@ -5,7 +5,7 @@ import { LoginForm } from '../components';
 import { LoginFormValues } from '../types';
 
 export interface LoginContainerProps {
-  onSubmit: (formValues: LoginFormValues) => void | Promise<void>;
+  onSubmit: (formValues: LoginFormValues) => boolean | Promise<boolean>;
 }
 
 export const LoginContainer = ({
