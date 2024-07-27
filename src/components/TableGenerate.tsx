@@ -2,7 +2,9 @@
 
 import { FormEvent, ReactElement, useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import styled from 'styled-components';
 import { parseTable } from '../helpers/table';
+import { Body2 } from '../styles/text';
 import { ColumnDefinition, FormatData, SourceTable } from '../types';
 import { Button } from './Button';
 import { Table } from './Table';
@@ -46,7 +48,7 @@ export const TableGenerate = (): ReactElement => {
   };
 
   return (
-    <div>
+    <StyledTableGenerate>
       <FormProvider {...form}>
         <form onSubmit={preventDefault} noValidate>
           <Textarea
@@ -61,7 +63,24 @@ export const TableGenerate = (): ReactElement => {
 
       <Button onClick={handleMakeTable}>Make table</Button>
 
-      {!!columns.length && <Table columns={columns} data={formatData} />}
-    </div>
+      <div>
+        <Body2>Format JSON:</Body2>
+        {!!formatData?.length && JSON.stringify(formatData)}
+      </div>
+
+      <div>
+        <Body2>Table:</Body2>
+        {!!columns.length && <Table columns={columns} data={formatData} />}
+      </div>
+    </StyledTableGenerate>
   );
 };
+
+const StyledTableGenerate = styled.div`
+  display: grid;
+  grid-gap: 16px;
+
+  span {
+    display: block;
+  }
+`;
