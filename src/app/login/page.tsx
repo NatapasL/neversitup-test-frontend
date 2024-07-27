@@ -17,7 +17,7 @@ const LoginPage = (): ReactElement => {
     const loginResult = await login(formValues);
 
     if (loginResult) {
-      redirect(`/`);
+      redirect(`/todo`);
       return true;
     }
 
