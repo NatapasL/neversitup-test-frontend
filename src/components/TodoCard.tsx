@@ -3,11 +3,11 @@
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import dayjs from 'dayjs';
-import { MouseEventHandler, ReactElement, useMemo } from 'react';
+import { type MouseEventHandler, type ReactElement, useMemo } from 'react';
 import styled from 'styled-components';
 import { SECONDARY } from '../styles/colors';
 import { Body2, Small2, Title3 } from '../styles/text';
-import { Todo } from '../types';
+import type { Todo } from '../types';
 
 export interface TodoCardProps {
   todo: Todo;

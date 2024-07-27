@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEventHandler, ReactElement, ReactNode } from 'react';
+import type { MouseEventHandler, ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 import { ButtonType } from '../constants';
 import { PRIMARY, SECONDARY, WHITE } from '../styles/colors';

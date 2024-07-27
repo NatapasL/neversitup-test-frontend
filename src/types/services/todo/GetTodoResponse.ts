@@ -1,4 +1,4 @@
-import { TodoResponse } from './TodoResponse';
+import type { TodoResponse } from './TodoResponse';
 
 export interface GetTodoResponse {
   isSuccess: boolean;

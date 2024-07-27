@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { Small1 } from '../styles/text';
 import { ValidationErrorMessage } from './ValidationErrorMessage';
 

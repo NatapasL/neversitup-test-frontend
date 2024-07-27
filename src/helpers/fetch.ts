@@ -1,5 +1,5 @@
 import { handleUnauthorized } from '../authentication';
-import {
+import type {
   CustomResponse,
   DeleteDataRequest,
   GetDataRequest,

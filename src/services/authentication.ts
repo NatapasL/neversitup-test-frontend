@@ -1,5 +1,5 @@
 import { postData } from '../helpers';
-import {
+import type {
   CustomResponse,
   LoginBody,
   LoginResponse,

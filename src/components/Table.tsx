@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
-import { ColumnDefinition, FormatData } from '../types';
+import type { ReactElement } from 'react';
+import type { ColumnDefinition, FormatData } from '../types';
 
 export interface TableProps {
   columns: ColumnDefinition[];

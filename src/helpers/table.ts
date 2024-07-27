@@ -1,4 +1,4 @@
-import { FormatData, SourceTable } from '../types';
+import type { FormatData, SourceTable } from '../types';
 
 export const parseTable = (sourceTable: SourceTable): FormatData[] => {
   return sourceTable.data.reduce<FormatData[]>((formatDataList, dataGroup) => {

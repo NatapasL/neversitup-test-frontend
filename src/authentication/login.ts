@@ -1,5 +1,5 @@
 import { postLogin } from '../services';
-import { LoginBody } from '../types';
+import type { LoginBody } from '../types';
 import { clearToken, setToken } from './token';
 
 export const login = async (formValues: LoginBody): Promise<boolean> => {

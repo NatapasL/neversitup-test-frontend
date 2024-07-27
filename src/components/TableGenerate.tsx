@@ -1,11 +1,16 @@
 'use client';
 
-import { FormEvent, ReactElement, useCallback, useState } from 'react';
+import {
+  type FormEvent,
+  type ReactElement,
+  useCallback,
+  useState,
+} from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { parseTable } from '../helpers/table';
 import { Body2 } from '../styles/text';
-import { ColumnDefinition, FormatData, SourceTable } from '../types';
+import type { ColumnDefinition, FormatData, SourceTable } from '../types';
 import { Button } from './Button';
 import { Table } from './Table';
 import { Textarea } from './Textarea';

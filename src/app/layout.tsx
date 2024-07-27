@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { headers } from 'next/headers';
-import { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { MODAL_ROOT_ID } from '../constants';
 import { MainLayout } from '../layouts';
 import { parseJsonLd, parseMetaData } from '../schema';

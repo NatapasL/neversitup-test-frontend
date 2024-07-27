@@ -1,4 +1,4 @@
-import { SoftwareApplication, WithContext } from 'schema-dts';
+import type { SoftwareApplication, WithContext } from 'schema-dts';
 import { APPLICATION_NAME, AUTHOR, DESCRIPTION } from './constant';
 
 export const parseJsonLd = (

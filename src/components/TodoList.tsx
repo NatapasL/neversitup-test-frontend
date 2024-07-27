@@ -1,8 +1,8 @@
 'use client';
 
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import styled from 'styled-components';
-import { Todo } from '../types';
+import type { Todo } from '../types';
 import { TodoCard } from './TodoCard';
 
 export interface TodoListProps {

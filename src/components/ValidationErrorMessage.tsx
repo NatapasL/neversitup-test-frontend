@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import styled from 'styled-components';
 import { ERROR } from '../styles/colors';
 import { Small2 } from '../styles/text';

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactElement, useMemo } from 'react';
+import { type ReactElement, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { SECONDARY } from '../styles/colors';

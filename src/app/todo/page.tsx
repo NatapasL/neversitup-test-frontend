@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
-import { ReactElement } from 'react';
+import type { Metadata } from 'next';
+import type { ReactElement } from 'react';
 import { TodoListContainer } from '../../containers';
 import { createTodo, deleteTodo, getAllTodo, updateTodo } from '../../services';
-import { Todo, TodoFormValues } from '../../types';
+import type { Todo, TodoFormValues } from '../../types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   return {

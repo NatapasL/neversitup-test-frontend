@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactElement, useState } from 'react';
+import { type ReactElement, useState } from 'react';
 import { LoginForm, ValidationErrorMessage } from '../components';
 import type { LoginFormValues } from '../types';
 

@@ -1,17 +1,15 @@
 import { getToken } from '../authentication';
 import { deleteData, getData, patchData, postData } from '../helpers';
-import {
+import type {
   CreateTodoResponse,
   CustomResponse,
   DeleteTodoResponse,
   GetAllTodoResponse,
+  RawTodoResponse,
   TodoBody,
+  TodoResponse,
   UpdateTodoResponse,
 } from '../types';
-import {
-  RawTodoResponse,
-  TodoResponse,
-} from '../types/services/todo/TodoResponse';
 
 const parseRawTodoResponse = (
   rawTodo: Partial<RawTodoResponse>

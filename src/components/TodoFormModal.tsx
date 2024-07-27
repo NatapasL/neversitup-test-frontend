@@ -1,8 +1,8 @@
 'use client';
 
-import { ReactElement, useMemo } from 'react';
+import { type ReactElement, useMemo } from 'react';
 import styled from 'styled-components';
-import { Todo, TodoFormValues } from '../types';
+import type { Todo, TodoFormValues } from '../types';
 import { Modal } from './Modal';
 import { TodoForm } from './TodoForm';
 

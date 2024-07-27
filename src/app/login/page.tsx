@@ -1,9 +1,9 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import { login } from '../../authentication';
 import { LoginContainer } from '../../containers';
-import { LoginFormValues } from '../../types';
+import type { LoginFormValues } from '../../types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   return {

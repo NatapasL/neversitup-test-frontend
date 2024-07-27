@@ -7,7 +7,7 @@ import { ReactElement, useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Button, ConfirmDialog, TodoFormModal } from '../components';
 import { TodoList } from '../components/TodoList';
-import { Todo, TodoFormValues } from '../types';
+import type { Todo, TodoFormValues } from '../types';
 
 export interface TodoListContainerProps {
   todoList: Todo[];

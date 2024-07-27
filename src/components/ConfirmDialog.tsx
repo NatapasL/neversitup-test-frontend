@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import styled from 'styled-components';
 import { ButtonType } from '../constants';
 import { Body2 } from '../styles/text';
