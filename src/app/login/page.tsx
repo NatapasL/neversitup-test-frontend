@@ -11,6 +11,7 @@ const LoginPage = (): ReactElement => {
 
     if (loginResult) {
       redirect(`/`);
+      return true;
     }
 
     return false;
